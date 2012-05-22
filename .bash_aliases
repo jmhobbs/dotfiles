@@ -11,3 +11,5 @@ calc(){ awk "BEGIN{ print $* }" ;}
 
 #source $HOME/System/opt/Bash-Git-Prompt/git_remote_check.sh
 #source $HOME/System/opt/Bash-Git-Prompt/git_prompt.sh
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
