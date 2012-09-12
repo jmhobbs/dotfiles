@@ -1,0 +1,12 @@
+[user]
+	name = John Hobbs
+	email = john@velvetcache.org
+[core]
+	editor = vim
+[color]
+	ui = true
+[log]
+	decorate = true
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	st = status -sb

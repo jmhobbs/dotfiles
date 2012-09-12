@@ -1,0 +1,177 @@
+" jmhobbs vimrc
+"
+" Odds and ends taken from:
+"  https://github.com/nicknisi/dotfiles/blob/master/vim/vimrc.symlink
+"  https://github.com/jerodsanto/dotfiles/blob/master/vimrc
+"
+
+
+""""""""""""""""
+" Vundle Setup "
+""""""""""""""""
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" Document Tree View
+Bundle 'scrooloose/nerdtree'
+
+" Buffer Navigator
+Bundle 'jeetsukumaran/vim-buffergator'
+
+" Close the buffer, leave the window
+Bundle 'rgarver/Kwbd.vim'
+
+" Commenter Tools
+Bundle 'scrooloose/nerdcommenter'
+
+" External Syntax Checking
+Bundle 'scrooloose/syntastic'
+
+" Fancy Status Line
+Bundle 'scrooloose/vim-statline'
+
+" Fancy Line Numbers
+Bundle 'myusuf3/numbers.vim'
+
+" Find In Project
+Bundle 'kien/ctrlp.vim'
+
+" Extra Syntax Highlighters
+Bundle 'hallison/vim-markdown'
+Bundle 'groenewege/vim-less'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'skammer/vim-css-color'
+
+" Color Schemes
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'fugalh/desert.vim'
+
+filetype plugin indent on 
+
+""""""""""""""""""
+" / Vundle Setup "
+""""""""""""""""""
+
+" Be Pretty!
+set t_Co=256
+set background=dark
+colorscheme desert
+
+" UTF-8 FTW!
+set encoding=utf-8
+
+" Keep backup/swap centrally
+set backupdir=~/.vim/backup
+set dir=~/.vim/backup
+set noswapfile
+
+" Tabs == 2 spaces
+set tabstop=2
+set shiftwidth=2
+
+" Tabs, not spaces
+set noexpandtab
+
+syntax enable               " Syntax highlighting
+set incsearch               " Incremental search
+set ignorecase              " Case-insensitive search by default
+set smartcase               " Case-sensitive search if uppcase is used
+set wildmenu                " Turn on tab completion menu
+set wildmode=list:longest   " Make tab completion work like shell
+set scrolloff=10            " Start scrolling viewport 10 lines ahead of cursor
+set nofoldenable            " No code folding
+set number                  " Show line nunbers
+set laststatus=2            " Status line on
+set showmatch               " Show matching braces
+set nowrap                  " No line wrapping
+
+""""""""""""""""
+" Key Mappings "
+""""""""""""""""
+
+" Change the leader
+let mapleader = ","
+let g:mapleader = ","
+
+
+" Disable Arrow Keys (For Konowledge!)
+"noremap  <Up> ""
+"noremap! <Up> <Esc>
+"noremap  <Down> ""
+"noremap! <Down> <Esc>
+"noremap  <Left> ""
+"noremap! <Left> <Esc>
+"noremap  <Right> ""
+"noremap! <Right> <Esc>
+
+
+" Remove extra whitespace
+nmap <leader><space> :%s/\s\+$<cr>
+
+" Open/Close NERDTree with control-n
+nmap <silent> <c-n> :NERDTreeToggle<CR>
+
+""""""""""""""""""""
+" Buffer Shortcuts "
+""""""""""""""""""""
+
+" Easy buffer switching with ctrl-left and ctrl-right
+"noremap <silent> <C-left> :bp<CR> 
+"noremap <silent> <C-right> :bn<CR> 
+
+" Next Buffer
+nmap <leader>n :bn<cr>
+" Previous Buffer
+nmap <leader>p :bp<cr>
+" Close Buffer
+nmap <leader>q :bd<cr>
+" Switch between current and last buffer
+nmap <leader>. <c-^>
+
+" Call bclose with Ctrl-W !
+nmap <C-W>! <Plug>Kwbd
+
+""""""""""""""""""""""
+" / Buffer Shortcuts "
+""""""""""""""""""""""
+
+
+""""""""""""""""""""
+" Window Shortcuts "
+""""""""""""""""""""
+
+function! WinMove(key)
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
+
+map <silent> <C-h> :call WinMove('h')<cr>
+map <silent> <C-j> :call WinMove('j')<cr>
+map <silent> <C-k> :call WinMove('k')<cr>
+map <silent> <C-l> :call WinMove('l')<cr>
+
+map <leader>wc :wincmd q<cr>
+
+" Equalize windows
+map <leader>= <C-w>=
+
+""""""""""""""""""""""
+" / Window Shortcuts "
+""""""""""""""""""""""
+
+""""""""""""""""""
+" / Key Mappings "
+""""""""""""""""""
