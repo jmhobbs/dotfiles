@@ -83,7 +83,7 @@ set ignorecase              " Case-insensitive search by default
 set smartcase               " Case-sensitive search if uppcase is used
 set wildmenu                " Turn on tab completion menu
 set wildmode=list:longest   " Make tab completion work like shell
-set scrolloff=10            " Start scrolling viewport 10 lines ahead of cursor
+set scrolloff=3             " Start scrolling viewport 3 lines ahead of cursor
 set nofoldenable            " No code folding
 set number                  " Show line nunbers
 set laststatus=2            " Status line on
@@ -109,6 +109,8 @@ let g:mapleader = ","
 "noremap  <Right> ""
 "noremap! <Right> <Esc>
 
+" Expand %% into the current directory of the current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Remove extra whitespace
 nmap <leader><space> :%s/\s\+$<cr>
@@ -132,6 +134,7 @@ nmap <leader>p :bp<cr>
 nmap <leader>q :bd<cr>
 " Switch between current and last buffer
 nmap <leader>. <c-^>
+nmap <leader>, <c-^>
 
 " Call bclose with Ctrl-W !
 nmap <C-W>! <Plug>Kwbd
