@@ -33,6 +33,8 @@ end
 
 desc "create all the symlinks"
 task :install do
+	`[ -e ~/.vim/bundle/vundle ] || git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
+	`[ -e ~/.vim/backup ] || mkdir -p ~/.vim/backup`
   linkables do |linkable, file, target|
     unless File.exists?(target)
       `ln -s "$PWD/#{linkable}" "#{target}"`
