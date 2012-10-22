@@ -41,14 +41,17 @@ Bundle 'myusuf3/numbers.vim'
 " Find In Project
 Bundle 'kien/ctrlp.vim'
 
+" PHP Omnicompletion
+Bundle 'shawncplus/phpcomplete.vim.git'
+
 " Extra Syntax Highlighters
 Bundle 'hallison/vim-markdown'
 Bundle 'groenewege/vim-less'
-Bundle 'hail2u/vim-css3-syntax'
+"Bundle 'hail2u/vim-css3-syntax'
 Bundle 'skammer/vim-css-color'
 
 " Color Schemes
-Bundle 'altercation/vim-colors-solarized'
+"Bundle 'altercation/vim-colors-solarized'
 Bundle 'fugalh/desert.vim'
 
 filetype plugin indent on 
