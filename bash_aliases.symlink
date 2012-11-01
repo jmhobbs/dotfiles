@@ -1,4 +1,19 @@
-PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[\033[1;31m\]✪ \[\033[00m\]"
+function __git_ps1_quick_summary {
+	git branch > /dev/null 2>&1
+	if [ "$?" == "0" ]; then
+		echo -ne " \e[0;33m⚡\e[00m "
+		echo -ne "\e[1;32m"
+		echo -n $(git status -sb | grep '^## ' | sed 's/^## //g')
+		echo -ne "\e[00m\e[1;35m"
+		CHANGES="$(git status --porcelain | cut -c 2 | uniq | sort | sed 's/ *//g')"
+		if [ "0" != "$(echo -n $CHANGES | wc -m)" ]; then
+			echo -n " $CHANGES"
+		fi
+		echo -ne "\e[00m \e[0;33m⚡\e[00m"
+	fi
+}
+
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1_quick_summary)\[\033[1;31m\] ✪ \[\033[00m\]"
 
 source ~/.bash_complete_fab
 
