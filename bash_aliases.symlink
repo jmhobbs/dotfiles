@@ -5,7 +5,7 @@ function __git_ps1_quick_summary {
 		echo -ne "\e[1;32m"
 		echo -n $(git status -sb | grep '^## ' | sed 's/^## //g')
 		echo -ne "\e[00m\e[1;35m"
-		CHANGES="$(git status --porcelain | cut -c 2 | uniq | sort | sed 's/ *//g')"
+		CHANGES="$(git status --porcelain | cut -c 2 | uniq | sort | sed 's/ *//g' | tr -d '\n')"
 		if [ "0" != "$(echo -n $CHANGES | wc -m)" ]; then
 			echo -n " $CHANGES"
 		fi
