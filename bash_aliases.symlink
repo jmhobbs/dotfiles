@@ -5,13 +5,13 @@ function __git_ps1_quick_summary {
 		echo -ne "\e[0;37m"
 		echo -n $(git branch 2>&1 | grep '^*' | head -1 | sed -e 's/* //')
 		echo -ne "\e[00m"
-		UNSTAGED_CHANGES="$(git status --porcelain | grep "^[ /?]" | cut -c 2 | uniq | sort | sed 's/ *//g' | tr -d '\n')"
+		UNSTAGED_CHANGES="$(git status --porcelain | grep "^[ /?]" | cut -c 2 | sort | uniq | sed 's/ *//g' | tr -d '\n')"
 		if [ "0" != "$(echo -n $UNSTAGED_CHANGES | wc -m)" ]; then
 			echo -ne "\e[1;35m"
 			echo -n " $UNSTAGED_CHANGES"
 			echo -ne "\e[00m"
 		fi
-		STAGED_CHANGES="$(git status --porcelain | grep "^[^ /?]" | cut -c 1 | uniq | sort | sed 's/ *//g' | tr -d '\n')"
+		STAGED_CHANGES="$(git status --porcelain | grep "^[^ /?]" | cut -c 1 | sort | uniq | sed 's/ *//g' | tr -d '\n')"
 		if [ "0" != "$(echo -n $STAGED_CHANGES | wc -m)" ]; then
 			echo -ne "\e[1;32m"
 			echo -n " $STAGED_CHANGES"
@@ -25,7 +25,25 @@ PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[0
 
 source ~/.bash_complete_fab
 
-alias activate='source ./venv/bin/activate'
+function activate {
+	deactivate > /dev/null 2>&1
+	UP="."
+	while true; do
+		REAL="$(realpath $UP)"
+		if [ "/" == "$REAL" ]; then
+			echo "no venv in tree"
+			return 1
+		elif [ -d "$REAL/venv" ]; then
+			echo "activating $REAL/venv"
+			source "$REAL/venv/bin/activate"
+			return 0
+		fi
+		UP="$UP/.."
+	done
+}
+
+alias mkvenv='virtualenv venv --no-site-packages && touch requirements.txt'
+
 alias cls='clear'
 
 calc(){ awk "BEGIN{ print $* }" ;}
