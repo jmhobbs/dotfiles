@@ -57,7 +57,7 @@ Bundle 'skammer/vim-css-color'
 "Bundle 'altercation/vim-colors-solarized'
 Bundle 'fugalh/desert.vim'
 
-filetype plugin indent on 
+filetype plugin indent on
 
 """"""""""""""""""
 " / Vundle Setup "
@@ -129,8 +129,8 @@ nmap <silent> <c-n> :NERDTreeToggle<CR>
 """"""""""""""""""""
 
 " Easy buffer switching with ctrl-left and ctrl-right
-"noremap <silent> <C-left> :bp<CR> 
-"noremap <silent> <C-right> :bn<CR> 
+"noremap <silent> <C-left> :bp<CR>
+"noremap <silent> <C-right> :bn<CR>
 
 " Next Buffer
 nmap <leader>n :bn<cr>
