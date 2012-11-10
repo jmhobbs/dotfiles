@@ -44,6 +44,9 @@ Bundle 'kien/ctrlp.vim'
 " PHP Omnicompletion
 Bundle 'shawncplus/phpcomplete.vim.git'
 
+" Python Stuff
+Bundle "klen/python-mode"
+
 " Extra Syntax Highlighters
 Bundle 'hallison/vim-markdown'
 Bundle 'groenewege/vim-less'
