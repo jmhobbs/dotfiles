@@ -127,6 +127,9 @@ nmap <leader><space> :%s/\s\+$<cr>
 " Open/Close NERDTree with control-n
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 
+" Nerd tree ignore .pyc files
+let NERDTreeIgnore = ['\.pyc$']
+
 """"""""""""""""""""
 " Buffer Shortcuts "
 """"""""""""""""""""
