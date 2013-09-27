@@ -36,10 +36,10 @@ Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/vim-statline'
 
 " Fancy Line Numbers
-Bundle 'myusuf3/numbers.vim'
+"Bundle 'myusuf3/numbers.vim'
 
 " Find In Project
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 
 " PHP Omnicompletion
 Bundle 'shawncplus/phpcomplete.vim.git'
@@ -47,11 +47,14 @@ Bundle 'shawncplus/phpcomplete.vim.git'
 " Python Stuff
 Bundle "klen/python-mode"
 
+" Zen Coding
+Bundle "mattn/zencoding-vim"
+
 " Extra Syntax Highlighters
 Bundle 'hallison/vim-markdown'
 Bundle 'groenewege/vim-less'
 "Bundle 'hail2u/vim-css3-syntax'
-Bundle 'skammer/vim-css-color'
+"Bundle 'skammer/vim-css-color'
 
 " Color Schemes
 "Bundle 'altercation/vim-colors-solarized'
