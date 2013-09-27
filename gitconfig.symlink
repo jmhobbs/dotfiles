@@ -13,5 +13,9 @@
 	wdiff = diff --word-diff
 	amend = commit --amend -C HEAD
 	undo = reset --soft HEAD^
+	ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
+	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+	oops = reset --soft "HEAD^"
+	allbetter = commit -c ORIG_HEAD 
 [rerere]
 	enabled = 1
