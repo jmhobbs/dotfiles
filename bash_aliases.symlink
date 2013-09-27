@@ -46,6 +46,8 @@ alias mkvenv='virtualenv venv --no-site-packages && touch requirements.txt'
 
 alias cls='clear'
 
+alias markdown='redcarpet --parse-fenced-code-blocks'
+
 calc(){ awk "BEGIN{ print $* }" ;}
 
 export PATH="$PATH:/home/jmhobbs/System/bin"
