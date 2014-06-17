@@ -47,9 +47,6 @@ Bundle 'shawncplus/phpcomplete.vim.git'
 " Python Stuff
 Bundle "klen/python-mode"
 
-" Zen Coding
-Bundle "mattn/zencoding-vim"
-
 " Extra Syntax Highlighters
 Bundle 'hallison/vim-markdown'
 Bundle 'groenewege/vim-less'
