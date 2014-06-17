@@ -21,7 +21,18 @@ function __git_ps1_quick_summary {
 	fi
 }
 
-PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1_quick_summary)\[\033[1;31m\] ✪ \[\033[00m\]"
+if [ -f "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh" ]; then
+	source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+	GIT_PS1_SHOWDIRTYSTATE=true
+	export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1)\[\033[1;31m\] ✪ \[\033[00m\]"
+else
+	export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1_quick_summary)\[\033[1;31m\] ✪ \[\033[00m\]"
+fi
+
+# Mac bash autocompletes
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  source $(brew --prefix)/etc/bash_completion
+fi
 
 source ~/.bash_complete_fab
 
