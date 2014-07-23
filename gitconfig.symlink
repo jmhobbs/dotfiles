@@ -19,3 +19,5 @@
 	allbetter = commit -c ORIG_HEAD 
 [rerere]
 	enabled = 1
+[push]
+	default = simple
