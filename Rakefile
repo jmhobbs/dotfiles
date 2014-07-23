@@ -40,7 +40,6 @@ task :install do
       `ln -s "$PWD/#{linkable}" "#{target}"`
     end
   end
-  `vim +PluginInstall +qall`
 end
 
 desc "remove all files added"

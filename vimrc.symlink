@@ -17,11 +17,11 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
+" AIRLINE
+Bundle 'bling/vim-airline'
+
 " Document Tree View
 Bundle 'scrooloose/nerdtree'
-
-" Buffer Navigator
-Bundle 'jeetsukumaran/vim-buffergator'
 
 " Close the buffer, leave the window
 Bundle 'rgarver/Kwbd.vim'
@@ -35,26 +35,14 @@ Bundle 'scrooloose/syntastic'
 " Fancy Status Line
 Bundle 'scrooloose/vim-statline'
 
-" Fancy Line Numbers
-"Bundle 'myusuf3/numbers.vim'
-
-" Find In Project
-"Bundle 'kien/ctrlp.vim'
-
-" PHP Omnicompletion
-Bundle 'shawncplus/phpcomplete.vim.git'
-
 " Python Stuff
 Bundle "klen/python-mode"
 
 " Extra Syntax Highlighters
 Bundle 'hallison/vim-markdown'
 Bundle 'groenewege/vim-less'
-"Bundle 'hail2u/vim-css3-syntax'
-"Bundle 'skammer/vim-css-color'
 
 " Color Schemes
-"Bundle 'altercation/vim-colors-solarized'
 Bundle 'fugalh/desert.vim'
 
 filetype plugin indent on
@@ -95,6 +83,41 @@ set number                  " Show line nunbers
 set laststatus=2            " Status line on
 set showmatch               " Show matching braces
 set nowrap                  " No line wrapping
+
+"""""""""""""""
+"  AIRLINE  "
+"""""""""""""""
+
+set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+let g:Powerline_symbols = 'fancy'
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+let g:airline_powerline_fonts=1
+
+let g:airline_theme="molokai"
+
+if has("gui_running")
+	let s:uname = system("uname")
+	if s:uname == "Darwin\n"
+		set guifont=Source\ Code\ Pro\ for\ Powerline:h14
+		let g:airline_left_sep=''
+		let g:airline_right_sep=''
+		let g:airline_powerline_fonts=0
+	endif
+endif
 
 """"""""""""""""
 " Key Mappings "
