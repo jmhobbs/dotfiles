@@ -9,6 +9,7 @@ def linkables
   linkables.each do |linkable|
     file = linkable.split('/').last.split('.symlink').last
     target = "#{ENV["HOME"]}/.#{file}"
+    puts file, target
     yield linkable, file, target if block_given?
   end
 end
@@ -33,13 +34,13 @@ end
 
 desc "create all the symlinks"
 task :install do
-	`[ -e ~/.vim/bundle/vundle ] || git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
-	`[ -e ~/.vim/backup ] || mkdir -p ~/.vim/backup`
   linkables do |linkable, file, target|
     unless File.exists?(target)
       `ln -s "$PWD/#{linkable}" "#{target}"`
     end
   end
+	`[ -e ~/.vim/bundle/vundle ] || git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
+	`[ -e ~/.vim/backup ] || mkdir -p ~/.vim/backup`
 end
 
 desc "remove all files added"

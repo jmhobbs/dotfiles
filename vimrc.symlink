@@ -64,12 +64,14 @@ set backupdir=~/.vim/backup
 set dir=~/.vim/backup
 set noswapfile
 
+set smartindent
+
 " Tabs == 2 spaces
 set tabstop=2
 set shiftwidth=2
 
-" Tabs, not spaces
-set noexpandtab
+" Spaces, not tabs
+set expandtab
 
 syntax enable               " Syntax highlighting
 set incsearch               " Incremental search
