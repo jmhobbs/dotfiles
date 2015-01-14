@@ -234,3 +234,7 @@ set completeopt=menu
 """"""""""""""""""
 " / Key Mappings "
 """"""""""""""""""
+
+"" leader+r executes file 
+nnoremap <leader>r :!%:p
+
