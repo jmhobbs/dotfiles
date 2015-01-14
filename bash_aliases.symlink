@@ -72,3 +72,8 @@ type gzcat > /dev/null 2>&1
 if [ $? != 0 ]; then
 	alias gzcat='gunzip -c'
 fi
+
+which gvim > /dev/null 2>&1
+if [ $? != 0 ]; then
+  alias gvim='mvim'
+fi
