@@ -8,8 +8,8 @@
 [log]
 	decorate = true
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	st = status -sb
+	shortlog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  treelog = log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	wdiff = diff --word-diff
 	amend = commit --amend -C HEAD
 	undo = reset --soft HEAD^
@@ -21,3 +21,6 @@
 	enabled = 1
 [push]
 	default = simple
+[status]
+  short = true
+  branch = true
