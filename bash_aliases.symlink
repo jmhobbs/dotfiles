@@ -57,6 +57,10 @@ function activate {
 	done
 }
 
+alias todo="~/opt/bin/todo.sh -d ~/.todo.cfg"
+source ~/.todo_completion
+complete -F _todo todo
+
 alias mkvenv='virtualenv venv --no-site-packages && touch requirements.txt'
 
 alias cls='clear'
@@ -65,7 +69,7 @@ alias markdown='redcarpet --parse-fenced-code-blocks'
 
 calc(){ awk "BEGIN{ print $* }" ;}
 
-export PATH="$PATH:/home/jmhobbs/System/bin"
+export PATH="$PATH:~/opt/bin"
 export SHORT_ATTENTION_SPAN_DOCBOOK_PATH="/opt/docbook"
 
 type gzcat > /dev/null 2>&1
