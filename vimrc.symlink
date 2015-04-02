@@ -89,6 +89,12 @@ set laststatus=2            " Status line on
 set showmatch               " Show matching braces
 set nowrap                  " No line wrapping
 
+" STFU Bells
+set noerrorbells 
+set novisualbell
+set t_vb=
+autocmd! GUIEnter * set vb t_vb=
+
 """""""""""""""
 "  AIRLINE  "
 """""""""""""""
