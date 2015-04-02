@@ -72,6 +72,9 @@ calc(){ awk "BEGIN{ print $* }" ;}
 export PATH="$PATH:~/opt/bin"
 export SHORT_ATTENTION_SPAN_DOCBOOK_PATH="/opt/docbook"
 
+export GOPATH=$HOME/go
+export PATH=$PATH:$HOME/go/bin
+
 type gzcat > /dev/null 2>&1
 if [ $? != 0 ]; then
 	alias gzcat='gunzip -c'
