@@ -61,7 +61,7 @@ alias todo="~/opt/bin/todo.sh -d ~/.todo.cfg"
 source ~/.todo_completion
 complete -F _todo todo
 
-alias mkvenv='virtualenv venv --no-site-packages && touch requirements.txt'
+alias mkvenv='virtualenv env --no-site-packages && touch requirements.txt'
 
 alias cls='clear'
 
