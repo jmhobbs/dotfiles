@@ -38,6 +38,9 @@ Bundle 'scrooloose/vim-statline'
 " Python Stuff
 Bundle "klen/python-mode"
 
+" Go Stuff
+Plugin 'fatih/vim-go'
+
 " Extra Syntax Highlighters
 Bundle 'hallison/vim-markdown'
 Bundle 'groenewege/vim-less'
