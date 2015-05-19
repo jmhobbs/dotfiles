@@ -57,7 +57,7 @@ filetype plugin indent on
 " Be Pretty!
 set t_Co=256
 set background=dark
-colorscheme desert
+colorscheme molokai 
 
 " UTF-8 FTW!
 set encoding=utf-8
