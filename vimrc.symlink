@@ -226,11 +226,13 @@ let g:pymode_lint_write = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
 let g:pymode_lint_minheight = 1
 let g:pymode_lint_maxheight = 3
+let g:pymode_lint_ignore = "E501"
 
 let g:pymode_folding = 0
 let g:pymode_breakpoint = 0
 let g:pymode_utils_whitespaces = 0
 let g:pymode_doc = 0
+"let g:pymode_rope = 0
 
 " https://github.com/klen/python-mode/issues/384
 set completeopt=menu
