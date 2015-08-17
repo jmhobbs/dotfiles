@@ -24,7 +24,7 @@ Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 
 " Close the buffer, leave the window
-Bundle 'rgarver/Kwbd.vim'
+Bundle 'vim-scripts/BufClose.vim'
 
 " Commenter Tools
 Bundle 'scrooloose/nerdcommenter'
@@ -47,6 +47,7 @@ Bundle 'groenewege/vim-less'
 
 " Color Schemes
 Bundle 'fugalh/desert.vim'
+
 
 filetype plugin indent on
 
@@ -165,22 +166,20 @@ let NERDTreeIgnore = ['\.pyc$']
 " Buffer Shortcuts "
 """"""""""""""""""""
 
-" Easy buffer switching with ctrl-left and ctrl-right
-"noremap <silent> <C-left> :bp<CR>
-"noremap <silent> <C-right> :bn<CR>
 
 " Next Buffer
 nmap <leader>n :bn<cr>
+
 " Previous Buffer
 nmap <leader>p :bp<cr>
-" Close Buffer
-nmap <leader>q :bd<cr>
+
+" Close Buffer but not split
+nmap <leader>q :BufClose<cr>
+nmap <silent> <c-d> :BufClose<CR>
+
 " Switch between current and last buffer
 nmap <leader>. <c-^>
 nmap <leader>, <c-^>
-
-" Call bclose with Ctrl-W !
-nmap <C-W>! <Plug>Kwbd
 
 """"""""""""""""""""""
 " / Buffer Shortcuts "
