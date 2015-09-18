@@ -176,7 +176,7 @@ nmap <leader>p :bp<cr>
 
 " Close Buffer but not split
 nmap <leader>q :BufClose<cr>
-nmap <silent> <c-d> :BufClose<CR>
+nmap <silent> <c-d> :BufClose<CR>:bn<cr>
 
 " Switch between current and last buffer
 nmap <leader>. <c-^>
