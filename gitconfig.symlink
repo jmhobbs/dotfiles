@@ -11,12 +11,7 @@
 	shortlog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   treelog = log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	wdiff = diff --word-diff
-	amend = commit --amend -C HEAD
-	undo = reset --soft HEAD^
-	ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
-	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-	oops = reset --soft "HEAD^"
-	allbetter = commit -c ORIG_HEAD 
+  slong = git status --long
 [rerere]
 	enabled = 1
 [push]
