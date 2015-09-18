@@ -193,8 +193,8 @@ nmap <leader>, <c-^>
 """"""""""""""""""""
 
 " Resize vertical splits
-map <silent> <C-h> <C-w><
-map <silent> <C-l> <C-w>>
+map <silent> <C-l> <C-w><
+map <silent> <C-h> <C-w>>
 
 """"""""""""""""""""""
 " / Window Shortcuts "
