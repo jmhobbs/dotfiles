@@ -25,6 +25,7 @@ Bundle 'scrooloose/nerdtree'
 
 " Close the buffer, leave the window
 Bundle 'vim-scripts/BufClose.vim'
+Bundle 'vim-scripts/BufOnly.vim'
 
 " Commenter Tools
 Bundle 'scrooloose/nerdcommenter'
