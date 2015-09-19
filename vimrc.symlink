@@ -36,6 +36,9 @@ Bundle 'scrooloose/syntastic'
 " Fancy Status Line
 Bundle 'scrooloose/vim-statline'
 
+" Ctrl-P
+Plugin 'kien/ctrlp.vim'
+
 " Python Stuff
 Plugin 'klen/python-mode'
 
@@ -224,6 +227,16 @@ set completeopt=menu
 " / Python Mode "
 """""""""""""""""
 
+"""""""""
+" CtrlP "
+"""""""""
+
+let g:ctrlp_cmd = 'CtrlPMixed'
+set wildignore+=*.pyc,*.log,*.otf,*.woff
+
+"""""""""""
+" / CtrlP "
+"""""""""""
 
 """"""""""""""""""
 " / Key Mappings "
