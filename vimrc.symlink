@@ -147,6 +147,8 @@ endif
 let mapleader = ","
 let g:mapleader = ","
 
+" =j indents as JSON
+nmap =j :%!python -m json.tool<CR>
 
 " Disable Arrow Keys (For Konowledge!)
 "noremap  <Up> ""
