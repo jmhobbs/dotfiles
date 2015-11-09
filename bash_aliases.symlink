@@ -80,3 +80,13 @@ which gvim > /dev/null 2>&1
 if [ $? != 0 ]; then
   alias gvim='mvim'
 fi
+
+ANDROID="/Users/jmhobbs/Library/Android/sdk/platform-tools"
+if [ -d $ANDROID ]; then
+  export PATH="$PATH:$ANDROID"
+fi
+
+# Homebrew
+if [ -d "/usr/local/sbin" ]; then
+  export PATH="/usr/local/sbin:$PATH"
+fi
