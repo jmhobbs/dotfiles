@@ -61,10 +61,6 @@ alias todo="~/opt/bin/todo.sh -d ~/.todo.cfg"
 source ~/.todo_completion
 complete -F _todo todo
 
-alias mkvenv='virtualenv env --no-site-packages && touch requirements.txt'
-
-alias cls='clear'
-
 alias markdown='redcarpet --parse-fenced-code-blocks'
 
 calc(){ awk "BEGIN{ print $* }" ;}
