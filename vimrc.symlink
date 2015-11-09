@@ -52,6 +52,9 @@ Bundle 'groenewege/vim-less'
 " Color Schemes
 Bundle 'fugalh/desert.vim'
 
+" Editor Config
+Plugin 'editorconfig/editorconfig-vim'
+
 
 filetype plugin indent on
 
