@@ -37,7 +37,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/vim-statline'
 
 " Ctrl-P
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Python Stuff
 Plugin 'klen/python-mode'
@@ -49,12 +49,13 @@ Plugin 'fatih/vim-go'
 Bundle 'hallison/vim-markdown'
 Bundle 'groenewege/vim-less'
 
-" Color Schemes
-Bundle 'fugalh/desert.vim'
-
 " Editor Config
 Plugin 'editorconfig/editorconfig-vim'
 
+" Jinja & Twig
+Plugin 'ervandew/Jinja'
+au BufRead,BufNewFile *.twig set filetype=htmljinja
+au BufRead,BufNewFile *.jinja set filetype=htmljinja
 
 filetype plugin indent on
 
@@ -66,7 +67,6 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 colorscheme molokai 
-"colorscheme desert
 
 " UTF-8 FTW!
 set encoding=utf-8
@@ -97,6 +97,7 @@ set number                  " Show line nunbers
 set laststatus=2            " Status line on
 set showmatch               " Show matching braces
 set nowrap                  " No line wrapping
+set list                    " I like seeing invisible characters
 
 " STFU Bells
 set noerrorbells 
