@@ -1,3 +1,4 @@
 vim.symlink/bundle/*
 vim.symlink/backup/*
 vim.symlink/.netrwhist
+.DS_Store
