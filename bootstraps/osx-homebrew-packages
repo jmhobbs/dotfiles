@@ -12,8 +12,6 @@ brew install git-extras
 brew install gnupg
 brew install httpie
 brew install imagemagick
-brew install mcrypt
-brew install meld
 brew install netcat
 brew install nmap
 brew install node
