@@ -90,3 +90,17 @@ fi
 if [ -d "/usr/local/sbin" ]; then
   export PATH="/usr/local/sbin:$PATH"
 fi
+
+alias quickserve="php -S localhost:6060"
+
+# cd, relative to .git root
+function gcd {
+  ROOT="$(git root)"
+  EXIT="$?"
+
+  if [ "0" != "$EXIT" ]; then
+    echo "Not in a git repo!"
+  else
+    cd $ROOT/$1
+  fi
+}
