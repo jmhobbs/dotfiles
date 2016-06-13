@@ -65,7 +65,7 @@ alias markdown='redcarpet --parse-fenced-code-blocks'
 
 calc(){ awk "BEGIN{ print $* }" ;}
 
-export PATH="$PATH:~/opt/bin"
+export PATH="$PATH:$(realpath ~/opt/bin)"
 export SHORT_ATTENTION_SPAN_DOCBOOK_PATH="/opt/docbook"
 
 export GOPATH=$HOME/go
