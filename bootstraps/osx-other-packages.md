@@ -4,13 +4,16 @@
   * Airmail 3
   * Alfred
   * Caffeine
-  * Dash 2
+  * Dash
   * Gifwit
-  * Go2Shell
   * Sip
   * Transmit
 
 # Direct Packages
+
+## Go2Shell
+
+http://zipzapmac.com/go2shell
 
 ## Bartender 2
 

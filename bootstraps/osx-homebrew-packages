@@ -1,9 +1,8 @@
 #!/bin/bash
 
 brew install bash-completion
-brew install macvim --override-system-vim
+brew install macvim --with-override-system-vim
 brew install coreutils
-brew install cowsay
 brew install dnsmasq
 brew install editorconfig
 brew install gifsicle
@@ -17,7 +16,6 @@ brew install nmap
 brew install node
 brew install openssl
 brew install pwgen
-brew install redis
 brew install rename
 brew install tree
 brew install wget
