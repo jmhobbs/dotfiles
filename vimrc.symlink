@@ -19,6 +19,7 @@ Bundle 'gmarik/vundle'
 
 " AIRLINE
 Bundle 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Document Tree View
 Bundle 'scrooloose/nerdtree'
