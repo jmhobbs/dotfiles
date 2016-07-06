@@ -83,8 +83,10 @@ set smartindent
 set tabstop=2
 set shiftwidth=2
 
+" Flywheel...
+set softtabstop=0 noexpandtab
 " Spaces, not tabs
-set expandtab
+" set expandtab
 
 syntax enable               " Syntax highlighting
 set incsearch               " Incremental search
