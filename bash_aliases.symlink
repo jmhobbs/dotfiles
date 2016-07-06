@@ -69,7 +69,7 @@ export PATH="$PATH:$(realpath ~/opt/bin)"
 export SHORT_ATTENTION_SPAN_DOCBOOK_PATH="/opt/docbook"
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$GOPATH/bin
 
 type gzcat > /dev/null 2>&1
 if [ $? != 0 ]; then
