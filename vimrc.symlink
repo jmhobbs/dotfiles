@@ -53,6 +53,10 @@ Bundle 'groenewege/vim-less'
 " Editor Config
 Plugin 'editorconfig/editorconfig-vim'
 
+" Lets try ctags
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+
 " Jinja & Twig
 Plugin 'ervandew/Jinja'
 au BufRead,BufNewFile *.twig set filetype=htmljinja
@@ -246,6 +250,17 @@ set wildignore+=*.pyc,*.log,*.otf,*.woff
 """""""""""
 " / CtrlP "
 """""""""""
+
+"""""""""""""
+" easyctags "
+"""""""""""""
+
+set tags=./tags;
+let g:easytags_dynamic_files = 1
+
+"""""""""""""""
+" / easyctags "
+"""""""""""""""
 
 """"""""""""""""""
 " / Key Mappings "

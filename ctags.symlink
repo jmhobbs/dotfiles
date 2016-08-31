@@ -1,0 +1,9 @@
+--recurse=yes
+--exclude=.git
+--exclude=log
+--exclude=tmp
+--exclude=vendor
+--exclude=node_modules
+--exclude=.gems
+--languages=-html,sql
+--append
