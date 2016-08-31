@@ -40,6 +40,9 @@ Bundle 'scrooloose/vim-statline'
 " Ctrl-P
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" ack.vim
+Plugin 'mileszs/ack.vim'
+
 " Python Stuff
 Plugin 'klen/python-mode'
 
@@ -250,6 +253,23 @@ set wildignore+=*.pyc,*.log,*.otf,*.woff
 """""""""""
 " / CtrlP "
 """""""""""
+
+"""""""""""
+" Ack.vim "
+"""""""""""
+
+cnoreabbrev Ack Ack!
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --smart-case'
+  cnoreabbrev ag Ack!
+  cnoreabbrev aG Ack!
+  cnoreabbrev Ag Ack!
+  cnoreabbrev AG Ack!
+endif
+
+"""""""""""""
+" / Ack.vim "
+"""""""""""""
 
 """""""""""""
 " easyctags "
