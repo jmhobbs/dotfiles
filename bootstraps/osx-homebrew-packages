@@ -1,22 +1,35 @@
 #!/bin/bash
 
-brew install bash-completion
 brew install macvim --with-override-system-vim
-brew install coreutils
-brew install dnsmasq
-brew install editorconfig
-brew install gifsicle
-brew install git
-brew install git-extras
-brew install gnupg
-brew install httpie
-brew install imagemagick
-brew install netcat
-brew install nmap
-brew install node
-brew install openssl
-brew install pwgen
-brew install rename
-brew install tree
-brew install wget
-brew install ctags
+brew install \
+  awscli \
+  bash-completion \
+  coreutils \
+  ctags \
+  curl \
+  direnv \
+  dnsmasq \
+  editorconfig \
+  gifsicle \
+  git \
+  git-extras \
+  gnupg \
+  go \
+  httpie \
+  imagemagick \
+  jq \
+  most \
+  netcat \
+  nmap \
+  node \
+  openssl \
+  pwgen \
+  python \
+  redis \
+  rename \
+  shellcheck \
+  the_silver_searcher \
+  tig \
+  tree \
+  watch \
+  wget
