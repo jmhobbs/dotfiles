@@ -1,0 +1,34 @@
+function __kubectl_cluster {
+	if [ "$KUBECONFIG" != "" ]; then
+		CLUSTER=`basename $KUBECONFIG 2> /dev/null`
+		echo -ne "[$CLUSTER]"
+	fi
+}
+
+function use-cluster {
+	if [ -f "$HOME/.kube/$1" ]; then
+		export KUBECONFIG="$HOME/.kube/$1"
+	else
+		echo "Invalid cluster name"
+		return 1
+	fi
+}
+
+alias kc="kubectl"
+
+function kcdb {
+  kubectl get pod debug > /dev/null
+  if [ $? == "0" ]; then
+    kubectl exec debug --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
+  else
+    kubectl run debug --generator=run-pod/v1 --image=jmhobbs/debug-box:v2 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
+  fi
+}
+
+function kcsh {
+  kubectl exec $1 -c $2 --tty -i -- env COLUMNS=$COLUMNS ROWS=$ROWS TERM=$TERM bash
+}
+
+function node-info {
+  aws ec2 describe-instances --filters Name=private-dns-name,Values=$1
+}

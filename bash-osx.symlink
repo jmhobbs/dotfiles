@@ -1,0 +1,38 @@
+############
+# Homebrew #
+############
+#
+if [ -d "/usr/local/sbin" ]; then
+  export PATH="/usr/local/sbin:${PATH}"
+fi
+
+###########################
+# brew bash autocompletes #
+###########################
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  source $(brew --prefix)/etc/bash_completion
+fi
+
+OSX_ANDROID="${HOME}/Library/Android/sdk/platform-tools"
+if [ -d $OSX_ANDROID ]; then
+  export PATH="${PATH}:${OSX_ANDROID}"
+fi
+
+###########################
+# OSX AWS bash completion #
+###########################
+
+complete -C aws_completer aws
+
+###########
+# iTerm 2 #
+###########
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+###########
+# Helpers #
+###########
+#
+alias dnsflush="sudo killall -HUP mDNSResponder"

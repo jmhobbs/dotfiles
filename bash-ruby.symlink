@@ -1,0 +1,6 @@
+eval "$(rbenv init -)"
+
+function rbenv-init {
+  echo ".gems" > .rbenv-gemsets
+  echo "2.2.5" > .ruby-version
+}
