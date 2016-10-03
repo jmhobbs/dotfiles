@@ -1,32 +1,46 @@
 function __kubectl_cluster {
-	if [ "$KUBECONFIG" != "" ]; then
-		CLUSTER=`basename $KUBECONFIG 2> /dev/null`
-		echo -ne "[$CLUSTER]"
-	fi
+  if [ "$KUBECONFIG" != "" ]; then
+    CLUSTER=`basename $KUBECONFIG 2> /dev/null`
+    echo -ne "[$KUBE_NAMESPACE@$CLUSTER]"
+  fi
 }
 
 function use-cluster {
-	if [ -f "$HOME/.kube/$1" ]; then
-		export KUBECONFIG="$HOME/.kube/$1"
-	else
-		echo "Invalid cluster name"
-		return 1
-	fi
+  if [ -f "$HOME/.kube/$1" ]; then
+    export KUBECONFIG="$HOME/.kube/$1"
+    if [ "$2" != "" ]; then
+      export KUBE_NAMESPACE="$2"
+    else
+      export KUBE_NAMESPACE="default"
+    fi
+  else
+    echo "Invalid cluster name"
+    return 1
+  fi
 }
 
-alias kc="kubectl"
+function use-namespace {
+  if [ "$1" != "" ]; then
+    export KUBE_NAMESPACE="$1"
+  else
+    export KUBE_NAMESPACE="default"
+  fi
+}
+
+export KUBE_NAMESPACE="default"
+alias kc='kubectl --namespace="$KUBE_NAMESPACE"'
 
 function kcdb {
-  kubectl get pod debug > /dev/null
+  kc get pod debug > /dev/null
   if [ $? == "0" ]; then
-    kubectl exec debug --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
+    kc exec debug --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
   else
-    kubectl run debug --generator=run-pod/v1 --image=jmhobbs/debug-box:v2 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
+    kc run debug --generator=run-pod/v1 --image=jmhobbs/debug-box:v3 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
   fi
 }
 
 function kcsh {
-  kubectl exec $1 -c $2 --tty -i -- env COLUMNS=$COLUMNS ROWS=$ROWS TERM=$TERM bash
+  kc exec $1 -c $2 --tty -i -- env COLUMNS=$COLUMNS ROWS=$ROWS TERM=$TERM bash
 }
 
 function node-info {
