@@ -5,71 +5,74 @@
 "  https://github.com/jerodsanto/dotfiles/blob/master/vimrc
 "
 
-
-""""""""""""""""
-" Vundle Setup "
-""""""""""""""""
 set nocompatible
-filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+""""""""""""""
+" Plug Setup "
+""""""""""""""
 
-Bundle 'gmarik/vundle'
+call plug#begin('~/.vim/plugged')
 
 " AIRLINE
-Bundle 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Document Tree View
-Bundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " Close the buffer, leave the window
-Bundle 'vim-scripts/BufClose.vim'
-Bundle 'vim-scripts/BufOnly.vim'
-
-" Commenter Tools
-Bundle 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/BufClose.vim'
+Plug 'vim-scripts/BufOnly.vim'
 
 " External Syntax Checking
-Bundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Fancy Status Line
-Bundle 'scrooloose/vim-statline'
+" Plug 'scrooloose/vim-statline'
 
-" Ctrl-P
-Plugin 'ctrlpvim/ctrlp.vim'
+" Find Yo Files
+Plug 'ctrlpvim/ctrlp.vim'
 
 " ack.vim
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 
 " Python Stuff
-Plugin 'klen/python-mode'
+Plug 'klen/python-mode'
 
 " Go Stuff
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 " Extra Syntax Highlighters
-Bundle 'hallison/vim-markdown'
-Bundle 'groenewege/vim-less'
+Plug 'hallison/vim-markdown'
+Plug 'groenewege/vim-less'
 
 " Editor Config
-Plugin 'editorconfig/editorconfig-vim'
-
-" Lets try ctags
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plug 'editorconfig/editorconfig-vim'
 
 " Jinja & Twig
-Plugin 'ervandew/Jinja'
-au BufRead,BufNewFile *.twig set filetype=htmljinja
-au BufRead,BufNewFile *.jinja set filetype=htmljinja
+Plug 'ervandew/Jinja'
+
+" Diff markers in the gutter
+Plug 'mhinz/vim-signify'
+
+" nim Stuff
+Plug 'zah/nim.vim'
+
+" neocomplete
+Plug 'Shougo/neocomplete.vim'
+Plug 'vim-scripts/rubycomplete.vim'
+
+call plug#end()
+
+""""""""""""""""
+" / Plug Setup "
+""""""""""""""""
 
 filetype plugin indent on
 
-""""""""""""""""""
-" / Vundle Setup "
-""""""""""""""""""
+" Detect twig/jinja filetype
+au BufRead,BufNewFile *.twig set filetype=htmljinja
+au BufRead,BufNewFile *.jinja set filetype=htmljinja
 
 " Be Pretty!
 set t_Co=256
@@ -84,15 +87,13 @@ set backupdir=~/.vim/backup
 set dir=~/.vim/backup
 set noswapfile
 
-set smartindent
 
 " Tabs == 2 spaces
 set tabstop=2
 set shiftwidth=2
 
-" Spaces, not tabs
-set expandtab
-
+set smartindent             " Try to be clever vim
+set expandtab               " Spaces, not tabs
 syntax enable               " Syntax highlighting
 set incsearch               " Incremental search
 set ignorecase              " Case-insensitive search by default
@@ -106,6 +107,12 @@ set laststatus=2            " Status line on
 set showmatch               " Show matching braces
 set nowrap                  " No line wrapping
 set list                    " I like seeing invisible characters
+
+" Faster autocomplete with less searching
+set complete-=i
+
+" Ignore these when globbing
+set wildignore+=*.pyc,*.log,*.otf,*.woff
 
 " STFU Bells
 set noerrorbells 
@@ -136,21 +143,11 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline_powerline_fonts=1
 
-let g:airline_theme="molokai"
+let g:airline_theme="papercolor"
 
-if has("gui_running")
-	let s:uname = system("uname")
-	if s:uname == "Darwin\n"
-		set guifont=Source\ Code\ Pro\ for\ Powerline:h14
-		let g:airline_left_sep=''
-		let g:airline_right_sep=''
-		let g:airline_powerline_fonts=0
-	endif
-endif
-
-""""""""""""""""
-" Key Mappings "
-""""""""""""""""
+"""""""""""""""""
+" Misc Mappings "
+"""""""""""""""""
 
 " Change the leader
 let mapleader = ","
@@ -158,16 +155,6 @@ let g:mapleader = ","
 
 " =j indents as JSON
 nmap =j :%!python -m json.tool<CR>
-
-" Disable Arrow Keys (For Konowledge!)
-"noremap  <Up> ""
-"noremap! <Up> <Esc>
-"noremap  <Down> ""
-"noremap! <Down> <Esc>
-"noremap  <Left> ""
-"noremap! <Left> <Esc>
-"noremap  <Right> ""
-"noremap! <Right> <Esc>
 
 " Expand %% into the current directory of the current file
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -178,13 +165,17 @@ nmap <leader><space> :%s/\s\+$<cr>
 " Open/Close NERDTree with control-n
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 
-" Nerd tree ignore .pyc files
-let NERDTreeIgnore = ['\.pyc$']
+" leader+r executes file
+nnoremap <leader>r :!%:p
+
+"""""""""""""""""""
+" / Misc Mappings "
+"""""""""""""""""""
+
 
 """"""""""""""""""""
 " Buffer Shortcuts "
 """"""""""""""""""""
-
 
 " Next Buffer
 nmap <leader>n :bn<cr>
@@ -217,6 +208,7 @@ map <silent> <C-h> <C-w>>
 " / Window Shortcuts "
 """"""""""""""""""""""
 
+
 """""""""""""""
 " Python Mode "
 """""""""""""""
@@ -243,6 +235,7 @@ set completeopt=menu
 " / Python Mode "
 """""""""""""""""
 
+
 """""""""""
 " Go Mode "
 """""""""""
@@ -254,16 +247,20 @@ let g:go_fmt_command = "goimports"
 """""""""""""
 
 
-"""""""""
-" CtrlP "
-"""""""""
+"""""""""""""
+" CtrlP.vim "
+"""""""""""""
 
-let g:ctrlp_cmd = 'CtrlPMixed'
-set wildignore+=*.pyc,*.log,*.otf,*.woff
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.yardoc\|log|tmp|\.gems|vendor$',
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+  \ }
 
-"""""""""""
-" / CtrlP "
-"""""""""""
+"""""""""""""""
+" / CtrlP.vim "
+"""""""""""""""
+
 
 """""""""""
 " Ack.vim "
@@ -282,21 +279,58 @@ endif
 " / Ack.vim "
 """""""""""""
 
-"""""""""""""
-" easyctags "
-"""""""""""""
 
-set tags=./tags;
-let g:easytags_dynamic_files = 1
+""""""""""""
+" NERDTree "
+""""""""""""
+
+" Ignore .pyc files
+let NERDTreeIgnore = ['\.pyc$']
+
+""""""""""""""
+" / NERDTree "
+""""""""""""""
+
 
 """""""""""""""
-" / easyctags "
+" neocomplete "
 """""""""""""""
 
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+
+"""""""""""""""""
+" / neocomplete "
+"""""""""""""""""
+
+
+""""""""""""""""
+" rubycomplete "
+""""""""""""""""
+
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
 """"""""""""""""""
-" / Key Mappings "
+" / rubycomplete "
 """"""""""""""""""
 
-"" leader+r executes file 
-nnoremap <leader>r :!%:p
 
+"""""""""""
+" signify "
+"""""""""""
+
+let g:signify_vcs_list     = ['git']
+let g:signify_sign_change  = '±'
+
+"""""""""""""
+" / signify "
+"""""""""""""

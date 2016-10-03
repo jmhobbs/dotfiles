@@ -1,6 +1,6 @@
 #!/bin/bash
 
-brew install macvim --with-override-system-vim
+brew install macvim --with-override-system-vim --with-cscope --with-lua
 brew install \
   awscli \
   bash-completion \
