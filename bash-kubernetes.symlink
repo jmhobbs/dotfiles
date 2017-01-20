@@ -46,3 +46,7 @@ function kcsh {
 function node-info {
   aws ec2 describe-instances --filters Name=private-dns-name,Values=$1
 }
+
+function unpack-site-config {
+  base64 --decode | gunzip | jq .
+}

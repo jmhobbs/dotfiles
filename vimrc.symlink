@@ -4,6 +4,8 @@
 "  https://github.com/nicknisi/dotfiles/blob/master/vim/vimrc.symlink
 "  https://github.com/jerodsanto/dotfiles/blob/master/vimrc
 "
+"  :PlugInstall
+"
 
 set nocompatible
 
@@ -61,6 +63,7 @@ Plug 'zah/nim.vim'
 " neocomplete
 Plug 'Shougo/neocomplete.vim'
 Plug 'vim-scripts/rubycomplete.vim'
+Plug 'vim-scripts/sqlcomplete.vim'
 
 call plug#end()
 
@@ -322,6 +325,17 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 """"""""""""""""""
 " / rubycomplete "
 """"""""""""""""""
+
+
+"""""""""""""""
+" sqlcomplete "
+"""""""""""""""
+
+let g:sql_type_default = 'psql'
+
+"""""""""""""""""
+" / sqlcomplete "
+"""""""""""""""""
 
 
 """""""""""
