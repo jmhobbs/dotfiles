@@ -4,7 +4,7 @@
 "  https://github.com/nicknisi/dotfiles/blob/master/vim/vimrc.symlink
 "  https://github.com/jerodsanto/dotfiles/blob/master/vimrc
 "
-"  :PlugInstall
+"  :PlugUpdate
 "
 
 set nocompatible
@@ -269,14 +269,8 @@ let g:ctrlp_custom_ignore = {
 " Ack.vim "
 """""""""""
 
-cnoreabbrev Ack Ack!
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --smart-case'
-  cnoreabbrev ag Ack!
-  cnoreabbrev aG Ack!
-  cnoreabbrev Ag Ack!
-  cnoreabbrev AG Ack!
-endif
+let g:ackprg = '/usr/local/bin/ag --vimgrep --smart-case --skip-vcs-ignores'
+cnoreabbrev ag Ack!
 
 """""""""""""
 " / Ack.vim "
@@ -348,3 +342,6 @@ let g:signify_sign_change  = '±'
 """""""""""""
 " / signify "
 """""""""""""
+
+" My PATH broke for some reason :(
+let $PATH .= ':/usr/local/bin:/Users/johnhobbs/go/bin'
