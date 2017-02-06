@@ -35,7 +35,7 @@ function kcdb {
   if [ $? == "0" ]; then
     kc exec debug --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
   else
-    kc run debug --generator=run-pod/v1 --image=jmhobbs/debug-box:v3 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
+    kc run debug --labels="debug=true" --generator=run-pod/v1 --image=jmhobbs/debug-box:v3 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
   fi
 }
 
