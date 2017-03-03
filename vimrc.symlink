@@ -111,6 +111,9 @@ set showmatch               " Show matching braces
 set nowrap                  " No line wrapping
 set list                    " I like seeing invisible characters
 
+" Set invisible characters
+set listchars=tab:-∙,trail:∙,precedes:«,extends:»
+
 " Faster autocomplete with less searching
 set complete-=i
 
