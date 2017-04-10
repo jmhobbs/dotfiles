@@ -1,6 +1,17 @@
 eval "$(rbenv init -)"
 
 function rbenv-init {
-  echo ".gems" > .rbenv-gemsets
-  echo "2.2.5" > .ruby-version
+  if ! [ -f .rbenv-gemsets ]; then
+    echo ".gems" > .rbenv-gemsets
+  fi
+  if ! [ -f .ruby-version ]; then
+    echo "2.2.5" > .ruby-version
+  fi
+  gem install bundler
+  if ! [ -f Gemfile ]; then
+    echo 'source "https://rubygems.org"' > Gemfile
+    echo 'ruby "2.2.5"' >> Gemfile
+    echo '' >> Gemfile
+  fi
+  rbenv rehash
 }
