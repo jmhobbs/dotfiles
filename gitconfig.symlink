@@ -6,19 +6,31 @@
 	editor = vim
 [color]
 	ui = true
+[color "status"]
+	added = green
+	changed = yellow bold
+	untracked = red bold
+[color "diff"]
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 [log]
 	decorate = true
 [alias]
-	shortlog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-  treelog = log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	glog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	wdiff = diff --word-diff
-  slong = git status --long
+	slong = git status --long
 [rerere]
 	enabled = 1
 [push]
 	default = simple
 [status]
-  short = true
-  branch = true
+	short = true
+	branch = true
 [pull]
 	rebase = true
+[merge]
+	conflictstyle = diff3
