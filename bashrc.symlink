@@ -4,7 +4,7 @@
 
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
-set -o noclobber
+# set -o noclobber
 
 # Perform file completion in a case insensitive fashion
 bind "set completion-ignore-case on"
