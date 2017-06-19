@@ -1,6 +1,9 @@
 function __kubectl_cluster {
   if [ "$KUBECONFIG" != "" ]; then
-    CLUSTER=`basename $KUBECONFIG 2> /dev/null`
+    CLUSTER=$(basename $KUBECONFIG 2> /dev/null)
+    if [ "$CLUSTER" == "kubeconfig" ]; then
+      CLUSTER=$(dirname $KUBECONFIG | sed 's/.*\///')
+    fi
     echo -ne "[$KUBE_NAMESPACE@$CLUSTER]"
   fi
 }
