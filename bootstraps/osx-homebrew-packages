@@ -3,6 +3,7 @@
 brew install macvim --with-override-system-vim --with-cscope --with-lua
 brew install \
   awscli \
+  bash \
   bash-completion \
   coreutils \
   ctags \
@@ -33,3 +34,7 @@ brew install \
   tree \
   watch \
   wget
+
+# Set Homebrew bash as default
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+chsh -s /usr/local/bin/bash
