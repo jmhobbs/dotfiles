@@ -20,6 +20,12 @@ function use-cluster {
     echo "Invalid cluster name"
     return 1
   fi
+
+  if [ "$2" != "" ]; then
+    export KUBE_NAMESPACE="$2"
+  else
+    export KUBE_NAMESPACE="default"
+  fi
 }
 
 function use-namespace {
@@ -39,6 +45,15 @@ function kcdb {
     kc exec debug --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
   else
     kc run debug --labels="debug=true" --generator=run-pod/v1 --image=jmhobbs/debug-box:v3 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
+  fi
+}
+
+function kccalicoctl {
+  kc get pod calicoctl > /dev/null
+  if [ $? == "0" ]; then
+    kc exec calicoctl --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES 
+  else
+    kc run calicoctl --labels="debug=true" --generator=run-pod/v1 --image=calico/ctl:v1.3.0 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
   fi
 }
 
