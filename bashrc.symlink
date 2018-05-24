@@ -48,6 +48,9 @@ export PATH="/usr/local/heroku/bin:${PATH}"
 # rbenv
 export PATH="${HOME}/.rbenv/bin:${PATH}"
 
+# Homebrew
+export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
+
 #############
 # Load Misc #
 #############

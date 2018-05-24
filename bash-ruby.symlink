@@ -1,17 +1,3 @@
-eval "$(rbenv init -)"
-
-function rbenv-init {
-  if ! [ -f .rbenv-gemsets ]; then
-    echo ".gems" > .rbenv-gemsets
-  fi
-  if ! [ -f .ruby-version ]; then
-    echo "2.2.5" > .ruby-version
-  fi
-  gem install bundler
-  if ! [ -f Gemfile ]; then
-    echo 'source "https://rubygems.org"' > Gemfile
-    echo 'ruby "2.2.5"' >> Gemfile
-    echo '' >> Gemfile
-  fi
-  rbenv rehash
-}
+# Homebrew installed chruby
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
