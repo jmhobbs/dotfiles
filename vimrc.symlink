@@ -273,15 +273,12 @@ let g:ctrlp_custom_ignore = {
 """""""""""
 if executable("rg")
   let g:ackprg = 'rg --vimgrep --smart-case'
-elseif executable("ag")
-  let g:ackprg = 'ag --vimgrep --smart-case --skip-vcs-ignores'
 else
-  echom "warning: rg or ag not found"
+  let g:ackprg = 'ag --vimgrep --smart-case --skip-vcs-ignores'
 endif
 cnoreabbrev rg Ack!
 cnoreabbrev ag Ack!
 cnoreabbrev ack Ack!
-
 """""""""""""
 " / Ack.vim "
 """""""""""""
