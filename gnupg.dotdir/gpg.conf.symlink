@@ -1,0 +1,76 @@
+# https://gnupg.org/documentation/manuals/gnupg/GPG-Options.html#GPG-Options
+
+# Default secret key to sign with
+default-key 561612FFA10D9D7A7FFB75F4F79C72E6EDC70E38
+
+#-----------------#
+# Output Behavior #
+#-----------------#
+
+# Bypass all translations and assume that the OS uses native UTF-8 encoding. 
+display-charset utf-8
+
+# Disable comment string in clear text signatures and ASCII armored messages 
+no-comments
+
+# Suppress the initial copyright message.
+no-greeting
+
+# Disable inclusion of the version string in ASCII armored output
+no-emit-version
+
+# Show long key IDs, not short: https://gwolf.org/node/4070 
+keyid-format 0xlong
+
+# Display the calculated validity of user IDs during key listings
+list-options show-uid-validity
+verify-options show-uid-validity
+
+# List keys with their fingerprints
+with-fingerprint
+
+# Do not merge primary user ID and primary key in --with-colon listing mode and print all timestamps as seconds since 1970-01-01.
+fixed-list-mode
+
+#------------#
+# Key Server #
+#------------#
+
+# Default key server for send/recv/search
+keyserver hkps://hkps.pool.sks-keyservers.net
+
+# When using --refresh-keys, if the key in question has a preferred keyserver
+# URL, then DO NOT use that url. It can leak refresh information.
+keyserver-options no-honor-keyserver-url
+
+#---------------------#
+# Ciphers and Digests #
+#---------------------#
+
+# Preferred ciphers in order of strength
+personal-cipher-preferences AES256 AES192 AES CAST5
+
+# Preferred digests in order of strength
+personal-digest-preferences SHA512 SHA384 SHA256 SHA224
+
+# Default preferences used for creating new keys
+default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed
+
+# Digest used to sign keys
+cert-digest-algo SHA512
+
+# Cipger to use for encrypting private keys
+s2k-cipher-algo AES256
+
+# Digest to use for mangling passphrases on private keys
+s2k-digest-algo SHA512
+
+#------------------#
+# Secure Operation #
+#------------------#
+
+# Refuse to run if GnuPG cannot get secure memory.
+require-secmem
+
+# When verifying a signature made from a subkey, ensure that the cross certification "back signature" on the subkey is present and valid. 
+require-cross-certification
