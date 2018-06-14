@@ -1,7 +1,7 @@
 [user]
 	name = John Hobbs
 	email = john@velvetcache.org
-	signingkey = 34EB9490
+	signingKey = 0xF79C72E6EDC70E38
 [core]
 	editor = vim
 [color]
@@ -17,8 +17,11 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[commit]
+	gpgSign = true
 [log]
 	decorate = true
+	showSignature = true
 [alias]
 	glog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	wdiff = diff --word-diff
@@ -36,3 +39,4 @@
 	rebase = true
 [merge]
 	conflictstyle = diff3
+	verifySignatures = true

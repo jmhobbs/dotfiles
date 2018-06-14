@@ -1,7 +1,7 @@
 # https://gnupg.org/documentation/manuals/gnupg/GPG-Options.html#GPG-Options
 
 # Default secret key to sign with
-default-key 561612FFA10D9D7A7FFB75F4F79C72E6EDC70E38
+default-key 0xF79C72E6EDC70E38
 
 #-----------------#
 # Output Behavior #
