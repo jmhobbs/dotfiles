@@ -36,7 +36,7 @@ HISTCONTROL="erasedups:ignoreboth"
 #########
 
 # Load personal bins
-export PATH="$(realpath $HOME/opt/bin):${PATH}"
+export PATH="$HOME/opt/bin:$HOME/opt/platform-tools:${PATH}"
 
 # Go
 export GOPATH=$HOME/go

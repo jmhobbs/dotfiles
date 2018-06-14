@@ -14,10 +14,20 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
+#######################
+# OSX Android Toolkit #
+#######################
+
 OSX_ANDROID="${HOME}/Library/Android/sdk/platform-tools"
 if [ -d $OSX_ANDROID ]; then
   export PATH="${PATH}:${OSX_ANDROID}"
 fi
+
+##########################################
+# Homebrew sqlite3 with readline support #
+##########################################
+#
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 ###########################
 # OSX AWS bash completion #
