@@ -1,6 +1,8 @@
 #!/bin/sh
 # Yoink - https://github.com/jerodsanto/dotfiles/blob/master/osx
 
+read -p "Please enter your phone number for the login screen: " PHONE
+
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
@@ -57,5 +59,8 @@ chflags nohidden ~/Library
 
 # Disable the noisy and useless game center daemon
 launchctl unload -w /System/Library/LaunchAgents/com.apple.gamed.plist
+
+# Login screen help text
+defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact $PHONE"
 
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
