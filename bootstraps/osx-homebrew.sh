@@ -9,6 +9,7 @@ brew install \
   bash-completion \
   chruby \
   coreutils \
+  composer \
   curl \
   direnv \
   editorconfig \
@@ -26,6 +27,8 @@ brew install \
   nmap \
   node \
   openssl \
+  php \
+  phplint \
   pwgen \
   python \
   redis \
@@ -59,6 +62,7 @@ brew cask install \
   postico \
   sequel-pro \
   spectacle \
+  visual-studio-code \
   vlc
 
 # Set Homebrew bash as default
