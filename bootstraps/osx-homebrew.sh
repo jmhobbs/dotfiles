@@ -1,16 +1,18 @@
 #!/bin/bash
 
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 brew install macvim --with-override-system-vim --with-cscope --with-lua
+
 brew install \
-  awscli \
   bash \
   bash-completion \
+  chruby \
   coreutils \
-  ctags \
   curl \
   direnv \
-  dnsmasq \
   editorconfig \
+  ffmpeg \
   gifsicle \
   git \
   git-extras \
@@ -28,12 +30,34 @@ brew install \
   python \
   redis \
   rename \
+  ripgrep \
+  ruby-install \
   shellcheck \
   the_silver_searcher \
-  tig \
   tree \
   watch \
   wget
+
+brew cask install \
+  bartender \
+  caffeine \
+  charles \
+  cinch \
+  dropbox \
+  fantastical \
+  flux \
+  go2shell \
+  gpg-suite \
+  hajo-headphone-enhancer \
+  iterm2 \
+  meld \
+  mou \
+  ngrok \
+  osxfuse \
+  postico \
+  sequel-pro \
+  spectacle \
+  vlc
 
 # Set Homebrew bash as default
 sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
