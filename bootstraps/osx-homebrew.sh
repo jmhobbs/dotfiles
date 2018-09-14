@@ -45,8 +45,10 @@ brew cask install \
   cinch \
   dropbox \
   fantastical \
+  firefox \
   flux \
   go2shell \
+  google-chrome \
   gpg-suite \
   hajo-headphone-enhancer \
   iterm2 \
