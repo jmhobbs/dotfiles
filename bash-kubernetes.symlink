@@ -28,6 +28,13 @@ function use-cluster {
   fi
 }
 
+function _use_cluster_completions {
+  COMPREPLY=($(compgen -W "$(kubectl config get-contexts | sed 's/^\** *//' | awk '{print $1}' | sed '1d')" "${COMP_WORDS[1]}"))
+}
+
+complete -F _use_cluster_completions use-cluster
+
+
 function use-namespace {
   if [ "$1" != "" ]; then
     export KUBE_NAMESPACE="$1"
