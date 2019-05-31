@@ -46,3 +46,9 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 ###########
 #
 alias dnsflush="sudo killall -HUP mDNSResponder"
+
+############
+# GPG->SSH #
+############
+
+export SSH_AUTH_SOCK=/Users/johnhobbs/.gnupg/S.gpg-agent.ssh

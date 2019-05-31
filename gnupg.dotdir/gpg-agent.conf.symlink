@@ -6,3 +6,6 @@ default-cache-ttl 0
 
 # Maximum time a cache entry is valid, even if used before default-cache-ttl expires
 max-cache-ttl 600
+
+# SSH On!
+enable-ssh-support
