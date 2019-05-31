@@ -5,41 +5,58 @@
 brew install macvim --with-override-system-vim --with-cscope --with-lua
 
 brew install \
+  aria2 \
+  awscli \
   bash \
   bash-completion \
   chruby \
-  coreutils \
+  composer \
   composer \
   curl \
+  diff-so-fancy
   direnv \
   editorconfig \
   ffmpeg \
-  gifsicle \
+  fzf \
+  giflossy \
   git \
   git-extras \
   gnupg \
   go \
+  hexyl \
   httpie \
   imagemagick \
+  irssi \
   jq \
+  kubernetes-cl i\
   most \
+  ncdu \
   netcat \
   nmap \
   node \
+  openjpeg \
   openssl \
   php \
   phplint \
+  pinentry \
+  pstree \
   pwgen \
   python \
   redis \
   rename \
   ripgrep \
+  rlwrap \
+  rsync \
+  ruby-build \
   ruby-install \
   shellcheck \
   the_silver_searcher \
   tree \
+  unrar \
   watch \
-  wget
+  wget \
+  zip \
+  zopfli
 
 brew cask install \
   bartender \
