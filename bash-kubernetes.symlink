@@ -60,12 +60,16 @@ function kccalicoctl {
   if [ $? == "0" ]; then
     kc exec calicoctl --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES 
   else
-    kc run calicoctl --labels="debug=true" --generator=run-pod/v1 --image=calico/ctl:v1.3.0 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
+    kc run calicoctl --labels="debug=true" --generator=run-pod/v1 --image=calico/ctl:v1.3.0 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES sh
   fi
 }
 
 function kcsh {
-  kc exec $1 -c $2 --tty -i -- env COLUMNS=$COLUMNS ROWS=$ROWS TERM=$TERM bash
+  if [ "$2" != "" ]; then
+    kc exec $1 -c $2 --tty -i -- env COLUMNS=$COLUMNS ROWS=$ROWS TERM=$TERM sh
+  else
+    kc exec $1 --tty -i -- env COLUMNS=$COLUMNS ROWS=$ROWS TERM=$TERM sh
+  fi
 }
 
 function node-info {
