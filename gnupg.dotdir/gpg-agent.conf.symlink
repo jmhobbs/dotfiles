@@ -1,5 +1,5 @@
 # Deprecated.  Use the standard socket for communication with gpg.
-use-standard-socket
+#use-standard-socket
 
 # Default length of time a cache entry is valid.
 default-cache-ttl 0

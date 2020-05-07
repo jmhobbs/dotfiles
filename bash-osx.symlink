@@ -44,8 +44,9 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 ###########
 # Helpers #
 ###########
-#
+
 alias dnsflush="sudo killall -HUP mDNSResponder"
+alias checkwin="shopt -s checkwinsize"
 
 ############
 # GPG->SSH #

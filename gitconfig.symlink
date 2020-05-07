@@ -28,6 +28,7 @@
 	slong = git status --long
 	unlockremote = "!f() { REMOTE=\"$1\"; if [ \"$1\" == \"\" ]; then REMOTE=\"upstream\"; fi; git config --unset \"remote.$REMOTE.pushurl\"; }; f"
 	lockremote = "!f() { REMOTE=\"$1\"; if [ \"$1\" == \"\" ]; then REMOTE=\"upstream\"; fi; git config \"remote.$REMOTE.pushurl\" no_push; }; f"
+	nah = !git reset --hard && git clean -df
 [rerere]
 	enabled = 1
 [push]

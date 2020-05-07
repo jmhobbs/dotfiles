@@ -42,7 +42,7 @@ Plug 'mileszs/ack.vim'
 Plug 'klen/python-mode'
 
 " Go Stuff
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Extra Syntax Highlighters
 Plug 'hallison/vim-markdown'
@@ -51,8 +51,9 @@ Plug 'groenewege/vim-less'
 " Editor Config
 Plug 'editorconfig/editorconfig-vim'
 
-" Jinja & Twig
-Plug 'ervandew/Jinja'
+" Jinja, Nunjucks & Twig
+"Plug 'ervandew/Jinja'
+Plug 'lepture/vim-jinja'
 
 " Diff markers in the gutter
 Plug 'mhinz/vim-signify'
@@ -60,10 +61,24 @@ Plug 'mhinz/vim-signify'
 " nim Stuff
 Plug 'zah/nim.vim'
 
+" VCL highlighting
+Plug 'fgsch/vim-varnish'
+
 " neocomplete
 Plug 'Shougo/neocomplete.vim'
 Plug 'vim-scripts/rubycomplete.vim'
 Plug 'vim-scripts/sqlcomplete.vim'
+
+" deocomplete
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"let g:deoplete#enable_at_startup = 1
+
 
 call plug#end()
 
@@ -247,6 +262,7 @@ set completeopt=menu
 """""""""""
 
 let g:go_fmt_command = "goimports"
+let g:go_info_mode = 'gocode' " use gocode until I can fix the blocking issue
 
 """""""""""""
 " / Go Mode "
