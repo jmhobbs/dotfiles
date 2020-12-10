@@ -85,3 +85,7 @@ function node-info {
 function unpack-site-config {
   base64 --decode | gunzip | jq .
 }
+
+function mkpod {
+  kc run $1 --generator=run-pod/v1 --image=jmhobbs/debug-box:v3 -- sleep 86400
+}

@@ -3,3 +3,9 @@ source "${HOME}/.bashrc"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jmhobbs/opt/google-cloud-sdk/path.bash.inc' ]; then . '/Users/jmhobbs/opt/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jmhobbs/opt/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/jmhobbs/opt/google-cloud-sdk/completion.bash.inc'; fi
