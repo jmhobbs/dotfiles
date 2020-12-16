@@ -1,8 +1,6 @@
 #!/bin/sh
 # Yoink - https://github.com/jerodsanto/dotfiles/blob/master/osx
 
-read -p "Please enter your phone number for the login screen: " PHONE
-
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
@@ -57,10 +55,13 @@ defaults write com.apple.terminal StringEncodings -array 4
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
-# Disable the noisy and useless game center daemon
-launchctl unload -w /System/Library/LaunchAgents/com.apple.gamed.plist
+# Speed up holding down keys
+defaults write -g InitialKeyRepeat -int 10
+defaults write -g KeyRepeat -int 1
 
-# Login screen help text
-defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "If found, please contact $PHONE"
-
+echo "Reloading UI"
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+
+echo "Setting bash as shell"
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+chsh -s /usr/local/bin/bash
