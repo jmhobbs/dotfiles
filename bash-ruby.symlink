@@ -1,5 +1,0 @@
-# Homebrew installed chruby
-#source /usr/local/opt/chruby/share/chruby/chruby.sh
-#source /usr/local/opt/chruby/share/chruby/auto.sh
-# Homebrew installed gem_home
-#source /usr/local/share/gem_home/gem_home.sh

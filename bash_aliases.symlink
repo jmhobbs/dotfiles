@@ -1,11 +1,3 @@
-############
-# todo.txt #
-############
-
-alias todo="$HOME/opt/bin/todo.sh -d $HOME/.todo.cfg"
-source "$HOME/.todo_completion"
-complete -F _todo todo
-
 ##########
 # Remaps #
 ##########
@@ -15,16 +7,9 @@ if [ $? != 0 ]; then
 	alias gzcat='gunzip -c'
 fi
 
-which gvim > /dev/null 2>&1
-if [ $? != 0 ]; then
-  alias gvim='mvim'
-fi
-
 ###########
 # Helpers #
 ###########
-
-alias quickserve="php -S localhost:6060"
 
 # cd, but relative to closest .git root
 function gcd {

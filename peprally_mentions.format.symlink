@@ -1,1 +1,0 @@
-{"header": "Mentions!", "format": "%s\n  %s", "fields": ["thing.full_name","comment"]}

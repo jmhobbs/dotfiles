@@ -1,74 +1,4 @@
-function __kubectl_cluster {
-  if [ "$KUBECONFIG" != "" ]; then
-    CLUSTER=$(basename $KUBECONFIG 2> /dev/null)
-    if [ "$CLUSTER" == "kubeconfig" ]; then
-      CLUSTER=$(dirname $KUBECONFIG | sed 's/.*\///')
-    fi
-    echo -ne "[$KUBE_NAMESPACE@$CLUSTER]"
-  else
-    if [ "$KUBE_NAMESPACE" != "" ]; then
-      CLUSTER="$(kubectl config current-context)"
-      echo -ne "[$KUBE_NAMESPACE@$CLUSTER]"
-    fi
-  fi
-}
-
-function use-cluster {
-  if [ -f "$HOME/.kube/$1" ]; then
-    export KUBECONFIG="$HOME/.kube/$1"
-  elif [ -f "$HOME/Working/kubernetes/cluster/$1/kubeconfig" ]; then
-    export KUBECONFIG="$HOME/Working/kubernetes/cluster/$1/kubeconfig"
-  else
-    export KUBECONFIG=""
-    kubectl config use-context "$1" > /dev/null 2>&1
-    if [ "$?" != 0 ]; then
-      echo "Invalid cluster name"
-      return 1
-    fi
-  fi
-
-  if [ "$2" != "" ]; then
-    export KUBE_NAMESPACE="$2"
-  else
-    export KUBE_NAMESPACE="default"
-  fi
-}
-
-function _use_cluster_completions {
-  COMPREPLY=($(compgen -W "$(kubectl config get-contexts | sed 's/^\** *//' | awk '{print $1}' | sed '1d')" "${COMP_WORDS[1]}"))
-}
-
-complete -F _use_cluster_completions use-cluster
-
-
-function use-namespace {
-  if [ "$1" != "" ]; then
-    export KUBE_NAMESPACE="$1"
-  else
-    export KUBE_NAMESPACE="default"
-  fi
-}
-
-export KUBE_NAMESPACE="default"
-alias kc='kubectl --namespace="$KUBE_NAMESPACE"'
-
-function kcdb {
-  kc get pod debug > /dev/null
-  if [ $? == "0" ]; then
-    kc exec debug --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
-  else
-    kc run debug --labels="debug=true,instance=$KUBE_NAMESPACE" --generator=run-pod/v1 --image=jmhobbs/debug-box:v3 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES bash
-  fi
-}
-
-function kccalicoctl {
-  kc get pod calicoctl > /dev/null
-  if [ $? == "0" ]; then
-    kc exec calicoctl --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES 
-  else
-    kc run calicoctl --labels="debug=true" --generator=run-pod/v1 --image=calico/ctl:v1.3.0 --tty -i -- env COLUMNS=$COLUMNS LINES=$LINES sh
-  fi
-}
+alias kc='kubectl'
 
 function kcsh {
   if [ "$2" != "" ]; then
@@ -76,14 +6,6 @@ function kcsh {
   else
     kc exec $1 --tty -i -- env COLUMNS=$COLUMNS ROWS=$ROWS TERM=$TERM sh
   fi
-}
-
-function node-info {
-  aws ec2 describe-instances --filters Name=private-dns-name,Values=$1
-}
-
-function unpack-site-config {
-  base64 --decode | gunzip | jq .
 }
 
 function mkpod {
