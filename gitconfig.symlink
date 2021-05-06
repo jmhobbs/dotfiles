@@ -3,7 +3,7 @@
 	email = john@velvetcache.org
 	signingKey = 0xF79C72E6EDC70E38
 [core]
-	editor = vim
+	editor = nvim
 [color]
 	ui = true
 [color "status"]
@@ -41,3 +41,5 @@
 [merge]
 	conflictstyle = diff3
 	verifySignatures = true
+[init]
+	defaultBranch = main
