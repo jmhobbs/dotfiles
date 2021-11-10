@@ -55,6 +55,9 @@ defaults write com.apple.terminal StringEncodings -array 4
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
+# Show dot files in finder
+defaults write com.apple.Finder AppleShowAllFiles -bool true
+
 # Speed up holding down keys
 defaults write -g InitialKeyRepeat -int 10
 defaults write -g KeyRepeat -int 1
