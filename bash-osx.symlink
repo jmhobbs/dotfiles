@@ -40,3 +40,16 @@ if [ -d "/usr/local/opt/asdf" ]; then
   . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 fi
 
+####################
+# Helper Functions #
+####################
+
+function onport {
+  PID="$(lsof -nP -iTCP -sTCP:LISTEN | grep -w $1 | awk '{print $2}')"
+  if [ "$PID" == "" ]; then
+    echo "error: no listener on $1" > /dev/stderr
+    return
+  fi
+  ps aux "$PID"
+}
+
