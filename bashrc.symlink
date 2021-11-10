@@ -31,7 +31,7 @@ export PATH="$HOME/opt/bin:${PATH}"
 
 # Go
 export GOPATH=$HOME/go
-export PATH="${GOPATH}/bin:${PATH}"
+export PATH="${GOPATH}:${PATH}"
 
 # Heroku
 export PATH="/usr/local/heroku/bin:${PATH}"

@@ -2,8 +2,8 @@
 # brew bash autocompletes #
 ###########################
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  source $(brew --prefix)/etc/bash_completion
+if [ -f /usr/local/etc/bash_completion ]; then
+  source /usr/local/etc/bash_completion
 fi
 
 ###########################
@@ -30,3 +30,13 @@ alias checkwin="shopt -s checkwinsize"
 ############
 
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+
+########
+# asdf #
+########
+
+if [ -d "/usr/local/opt/asdf" ]; then
+  . /usr/local/opt/asdf/asdf.sh
+  . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
+fi
+
