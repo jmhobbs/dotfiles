@@ -16,3 +16,8 @@ set input-meta on
 set output-meta on
 set show-all-if-ambiguous on
 set visible-stats on
+
+set show-mode-in-prompt on
+set vi-ins-mode-string + 
+set vi-cmd-mode-string : 
+
