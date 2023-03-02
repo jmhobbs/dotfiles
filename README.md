@@ -14,7 +14,7 @@ make [all|links|software|macOS|trust]
 all      - Install everything, in order
 links    - Link all configs
 software - Install software and Brewfile
-macOS    - Set macOS preferences and config
+os       - Set os preferences and config
 trust    - Import GPG keys, and other trusty things
 ```
 
@@ -34,9 +34,9 @@ It is safe to run this multiple times.
 
 Download and install all the software I use regularly.
 
-## macOs
+## os
 
-Configure macOS preferences and restart all required services.
+Configure OS preferences and restart all required services.
 
 ## trust
 
