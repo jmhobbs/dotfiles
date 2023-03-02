@@ -1,7 +1,7 @@
 [user]
 	name = John Hobbs
 	email = john@velvetcache.org
-	signingKey = 0xF79C72E6EDC70E38
+  signingKey = 0xF79C72E6EDC70E38
 [core]
 	editor = nvim
 [color]

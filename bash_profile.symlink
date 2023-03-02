@@ -1,4 +1,0 @@
-source "${HOME}/.bashrc"
-
-. /usr/local/opt/asdf/libexec/asdf.sh
-. "$HOME/.cargo/env"

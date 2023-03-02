@@ -1,0 +1,148 @@
+setopt prompt_subst
+# https://arjanvandergaag.nl/blog/customize-zsh-prompt-with-vcs-info.html
+# https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Version-Control-Information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '!'
+zstyle ':vcs_info:*' stagedstr '+'
+
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
++vi-git-untracked() {
+if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+  git status --porcelain | grep -m 1 -e '^??' -e '^[MTADRCU]' -e '^ [MTADRCU]' &>/dev/null
+then
+  hook_com[misc]=' '
+  if git status --porcelain | grep -m 1 '^??' &>/dev/null
+  then
+    hook_com[misc]+='?'
+  fi
+fi
+}
+
+zstyle ':vcs_info:*' formats       ' (%b%F{yellow}%m%f%F{red}%u%f%F{green}%c%f)'
+zstyle ':vcs_info:*' actionformats ' (%b|%a %F{yellow}%m%f%F{red}%u%f%F{green}%c%f)'
+
+PS1='%F{green}%n%f:%F{cyan}%~%f${vcs_info_msg_0_}%F{red} ✪%f '
+
+# https://zsh.sourceforge.io/Doc/Release/Options.html
+
+# Tune history tracking
+HISTSIZE=100000
+SAVEHIST=50000
+HISTFILE=~/.zsh_history
+# todo: erase duplicates
+
+# Try to fix Home/End
+bindkey "^[OF" end-of-line
+bindkey "^[OH" beginning-of-line
+
+###################
+# Shell Completes #
+###################
+
+autoload -Uz compinit && compinit
+
+# Homebrew
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
+# AWS
+if type aws_completer &>/dev/null
+then
+  autoload bashcompinit && bashcompinit
+  complete -C '/usr/local/bin/aws_completer' aws
+fi
+
+#######
+# fzf #
+#######
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+########
+# ASDF #
+########
+[ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh
+
+##########
+# Neovim #
+##########
+if type nvim > /dev/null 2>&1; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+  alias vim="nvim"
+fi
+
+##########
+# direnv #
+##########
+if type direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+# gpg-agent for SSH
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
+#######################
+# Helpers and Aliases #
+#######################
+
+alias dnsflush="sudo killall -HUP mDNSResponder"
+alias checkwin="shopt -s checkwinsize"
+
+# figure out what is listening on a port
+function onport {
+  PID="$(lsof -nP -iTCP -sTCP:LISTEN | grep -w $1 | awk '{print $2}')"
+  if [ "$PID" == "" ]; then
+    echo "error: no listener on $1" > /dev/stderr
+    return
+  fi
+  ps aux "$PID"
+}
+
+# create a diff comparison of two images
+function imgdiff () {
+  convert '(' "$1" -flatten -grayscale Rec709Luminance ')' \
+        '(' "$2" -flatten -grayscale Rec709Luminance ')' \
+        '(' -clone 0-1 -compose darken -composite ')' \
+        -channel RGB -combine /tmp/imgdiff.png \
+  && open /tmp/imgdiff.png
+}
+
+# cd, but relative to closest .git root
+function gcd {
+  GIT_ROOT="$(git root)"
+  if [ "0" != "$?" ]; then
+    echo "Not in a git repo!"
+  else
+    cd "$GIT_ROOT/$1"
+  fi
+}
+
+# gzcat isn't everywhere, but is great
+if ! type gzcat > /dev/null 2>&1
+then
+  alias gzcat='gunzip -c'
+fi
+
+# Better man pages
+if type most > /dev/null 2>&1
+then
+  export MANPAGER="most"
+else
+  man() {
+    env \
+      LESS_TERMCAP_mb=$'\e[1;31m' \
+      LESS_TERMCAP_md=$'\e[1;31m' \
+      LESS_TERMCAP_me=$'\e[0m' \
+      LESS_TERMCAP_se=$'\e[0m' \
+      LESS_TERMCAP_so=$'\e[1;44;33m' \
+      LESS_TERMCAP_ue=$'\e[0m' \
+      LESS_TERMCAP_us=$'\e[1;32m' \
+      man "$@"
+    }
+fi

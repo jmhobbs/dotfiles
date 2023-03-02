@@ -1,0 +1,45 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+window:
+  padding:
+    x: 5
+    y: 5
+
+scrolling:
+  history: 10000
+
+# Font configuration
+font:
+  # Normal (roman) font face
+  normal:
+    family: Source Code Pro
+    style: Regular
+
+  # Point size
+  size: 12.0
+
+# Colors (Doom One)
+colors:
+  # Default colors
+  primary:
+    background: '0x282c34'
+    foreground: '0xbbc2cf'
+
+  # Normal colors
+  normal:
+    black:   '0x282c34'
+    red:     '0xff6c6b'
+    green:   '0x98be65'
+    yellow:  '0xecbe7b'
+    blue:    '0x51afef'
+    magenta: '0xc678dd'
+    cyan:    '0x46d9ff'
+    white:   '0xbbc2cf'
+
+  # https://github.com/alacritty/alacritty/wiki/Keyboard-mappings#macos
+key_bindings:
+  - { key: N, mods: Command, action: CreateNewWindow } # Don't spawn instances, create windows
+  - { key: Left,     mods: Alt,     chars: "\x1bb" } # one word left
+  - { key: Right,    mods: Alt,     chars: "\x1bf" } # one word right
+  - { key: Left,     mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
+  - { key: Right,    mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
