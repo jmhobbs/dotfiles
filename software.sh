@@ -18,22 +18,25 @@ echo
 printf "\033[1;35m===================\033[0m\n"
 printf "\033[1;35mInstalling Brewfile\033[0m\n"
 printf "\033[1;35m===================\033[0m\n\n"
-brew bundle
+brew bundle --no-upgrade
 
 echo
-printf "\033[1;35m======================\033[0m\n"
-printf "\033[1;35mInstalling/Configuring\033[0m\n"
-printf "\033[1;35m======================\033[0m\n\n"
+printf "\033[1;35m====================\033[0m\n"
+printf "\033[1;35mInstalling from asdf\033[0m\n"
+printf "\033[1;35m====================\033[0m\n\n"
 
-printf "✅ Installing \033[0;34masdf plugins\033[0m\n"
-asdf plugin add nodejs
-asdf plugin add golang
 
-printf "✅ Installing \033[0;34mnodejs\033[0m\n"
-asdf install nodejs latest
+for plugin in nodejs golang ruby kubectl
+do
+  printf "✅ Installing \033[0;34m%s\033[0m\n" "$plugin"
+  asdf plugin add "$plugin"
+  asdf install "$plugin" latest
+done
 
-printf "✅ Installing \033[0;34mgolang\033[0m\n"
-asdf install golang latest
+echo
+printf "\033[1;35m===============\033[0m\n"
+printf "\033[1;35mInstalling Misc\033[0m\n"
+printf "\033[1;35m===============\033[0m\n\n"
 
 printf "✅ Installing \033[0;34mfzf\033[0m\n"
 "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
