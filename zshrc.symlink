@@ -57,6 +57,8 @@ then
   complete -C '/usr/local/bin/aws_completer' aws
 fi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 #######
 # fzf #
 #######
@@ -65,7 +67,8 @@ fi
 ########
 # ASDF #
 ########
-[ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh
+[ -f $(brew --prefix asdf)/libexec/asdf.sh ] && source $(brew --prefix asdf)/libexec/asdf.sh
+
 
 ##########
 # Neovim #

@@ -14,6 +14,8 @@ then
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
 fi
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 echo
 printf "\033[1;35m===================\033[0m\n"
 printf "\033[1;35mInstalling Brewfile\033[0m\n"
@@ -25,12 +27,12 @@ printf "\033[1;35m====================\033[0m\n"
 printf "\033[1;35mInstalling from asdf\033[0m\n"
 printf "\033[1;35m====================\033[0m\n\n"
 
-
 for plugin in nodejs golang ruby kubectl
 do
   printf "✅ Installing \033[0;34m%s\033[0m\n" "$plugin"
   asdf plugin add "$plugin"
   asdf install "$plugin" latest
+  asdf global "$plugin" latest
 done
 
 echo

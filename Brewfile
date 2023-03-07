@@ -7,6 +7,7 @@ if OS.mac?
 	cask "font-source-code-pro"
 
 	cask "alfred"
+ 	cask "alacritty"
 	cask "anybar"
 	cask "bartender"
 	cask "caffeine"
@@ -33,7 +34,6 @@ if OS.mac?
 	cask "qlmarkdown"
 	cask "rar"
 	cask "rectangle"
-	cask "virtualbox"
 	cask "visual-studio-code"
 	cask "wireshark"
 end
