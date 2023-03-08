@@ -207,3 +207,13 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+"""""""
+" Ale "
+"""""""
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'javascript': ['prettier', 'eslint'],
+\  'go': ['goimports'],
+\}
+let g:ale_fix_on_save = 1
