@@ -8,6 +8,8 @@ window:
 scrolling:
   history: 10000
 
+working_directory: ~
+
 # Font configuration
 font:
   # Normal (roman) font face
