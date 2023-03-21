@@ -1,6 +1,11 @@
+Ly ?
+bemenu
+pinentry-bemenu
+swaylock-effects (the fork)
+waybar
+
 /dev/nvme0n1p3 -> /          ext4
 /dev/nvme0n1p1 -> /boot/efi  vfat
-
 
 
 Reload Config : cmd-shift-c
