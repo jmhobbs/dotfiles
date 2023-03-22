@@ -1,0 +1,43 @@
+screenshot
+clock
+indicator
+
+effect-greyscale
+effect-blur=10x5
+
+grace=5
+
+indicator-thickness=5
+
+# Default colors of ring
+ring-color=333333
+inside-color=111111
+line-color=000000
+text-color=DDDDDD
+key-hl-color=999999
+bs-hl-color=CC9999
+
+# Clear
+inside-clear-color=111111
+ring-clear-color=dddddd
+line-clear-color=000000
+text-clear-color=ffffff
+
+# Caps Lock
+inside-caps-lock-color=111111
+ring-caps-lock-color=E0BC2E
+line-caps-lock-color=000000
+caps-lock-bs-hl-color=CC9999
+caps-lock-key-hl-color=CCC299
+
+# Verify
+inside-ver-color=111111
+ring-ver-color=2392D7
+line-ver-color=000000
+text-ver-color=ffffff
+
+# Wrong
+line-wrong-color=000000
+ring-wrong-color=BC3434
+inside-wrong-color=111111
+text-wrong-color=ffffff
