@@ -1,3 +1,5 @@
+# ${TEMPLATE_WARNING}
+
 # Default length of time a cache entry is valid.
 default-cache-ttl 0
 default-cache-ttl-ssh 0
@@ -9,5 +11,5 @@ max-cache-ttl-ssh 0
 # SSH On!
 enable-ssh-support
 
-# GUI pinentry on macOS
-pinentry-program /opt/homebrew/bin/pinentry-mac
+# GUI pinentry
+pinentry-program ${PINENTRY}

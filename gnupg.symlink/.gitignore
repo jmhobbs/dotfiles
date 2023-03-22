@@ -1,6 +1,6 @@
 *
 !dirmngr.conf
-!gpg-agent.conf
+!gpg-agent.conf.tmpl
 !gpg.conf
 !sshcontrol
 !.gitignore

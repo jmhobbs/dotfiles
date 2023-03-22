@@ -5,12 +5,12 @@ set -o nounset
 set -o pipefail
 
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+__root="$(cd "$__dir/../" && pwd)"
 
-printf "\033[1;35m======================\033[0m\n"
-printf "\033[1;35mLinking .symlink files\033[0m\n"
-printf "\033[1;35m======================\033[0m\n\n"
+source "$__dir/util.sh"
 
-find "$__dir" -maxdepth 1 -name '*.symlink' -print0 | \
+headline_banner "Linking .symlink files"
+find "$__root" -maxdepth 1 -name '*.symlink' -print0 | \
   while IFS= read -r -d '' file
   do
     target="$HOME/.$(basename "${file/.symlink//}")"
@@ -33,14 +33,10 @@ find "$__dir" -maxdepth 1 -name '*.symlink' -print0 | \
       fi
     fi
   done
-
-
 echo
-printf "\033[1;35m=============================\033[0m\n"
-printf "\033[1;35mMerging .mergedir directories\033[0m\n"
-printf "\033[1;35m=============================\033[0m\n\n"
 
-find "$__dir" -maxdepth 1 -name '*.mergedir' -print0 | \
+headline_banner "Merging .mergedir directories"
+find "$__root" -maxdepth 1 -name '*.mergedir' -print0 | \
   while IFS= read -r -d '' dir
   do
     relativeBaseDir="$(basename "$dir")"
@@ -79,15 +75,16 @@ find "$__dir" -maxdepth 1 -name '*.mergedir' -print0 | \
         fi
       done
   done
-
 echo
-printf "\033[1;35m===================\033[0m\n"
-printf "\033[1;35mInstalling vim-plug\033[0m\n"
-printf "\033[1;35m===================\033[0m\n\n"
 
-
+headline_banner "Installing vim-plug"
 if [ ! -f "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim ]
 then
   curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  printf "✅ Installed  - \033[0;34m%s\033[0m\n" "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim"
+  printf "💥 \033[1;33mOpen neovim and run PlugInstall\033[0m\n"
+else
+  already_installed "vim-plug"
 fi
+echo

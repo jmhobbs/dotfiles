@@ -1,11 +1,18 @@
-#!/bin/sh
-# Yoink - https://github.com/jerodsanto/dotfiles/blob/master/osx
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
 
-if [ "$(uname)" == "Darwin" ]
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source "$__dir/util.sh"
+
+if [[ "$OSTYPE" == "darwin"* ]]
 then
-  printf "\033[1;35m======================\033[0m\n"
-  printf "\033[1;35mWriting macOS defaults\033[0m\n"
-  printf "\033[1;35m======================\033[0m\n\n"
+  # Originally based on https://github.com/jerodsanto/dotfiles/blob/master/osx
+  # Some more docs at https://macos-defaults.com/
+
+  headline_banner "Writing macOS defaults"
 
   # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
   defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -72,6 +79,10 @@ then
   mkdir -p ~/Screenshots
   defaults write com.apple.screencapture location ~/Screenshots
 
-  printf "💥 \033[1;33mReloading UI\033[0m\n"
-  for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+  for app in Safari Finder Dock Mail SystemUIServer
+  do
+    printf "💥 Reloading \033[0;34m%s\033[0m\n" "$app"
+    killall "$app" >/dev/null 2>&1 || true
+  done
+  echo
 fi
