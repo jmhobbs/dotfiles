@@ -1,11 +1,5 @@
 set nocompatible
 
-" Disable netrw for nvim-tree
-lua << EOF
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-EOF
-
 call plug#begin()
 
 " Status Line
@@ -13,7 +7,7 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Tree Browser
-Plug 'nvim-tree/nvim-tree.lua'
+Plug 'preservim/nerdtree'
 
 " Close the buffer, leave the window
 Plug 'vim-scripts/BufClose.vim'
@@ -110,7 +104,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nmap <leader><space> :%s/\s\+$<cr>
 
 " Open/Close nvim-tree with control-n
-nmap <silent> <c-n> :NvimTreeToggle<CR>
+nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 " leader+r executes file
 nnoremap <leader>r :!%:p
@@ -168,15 +162,6 @@ let g:signify_sign_change  = '±'
 """""""""""""
 
 """""""""""""
-" nvim-tree "
-"""""""""""""
-
-lua << EOF
-require("nvim-tree").setup()
-EOF
-
-
-"""""""""""""
 "  Airline  "
 """""""""""""
 
@@ -217,3 +202,10 @@ let g:ale_fixers = {
 \  'go': ['goimports'],
 \}
 let g:ale_fix_on_save = 1
+
+
+""""""""""""
+" NERDTree "
+""""""""""""
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
