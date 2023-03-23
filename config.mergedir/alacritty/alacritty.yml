@@ -14,7 +14,7 @@ working_directory: ~
 font:
   # Normal (roman) font face
   normal:
-    family: Source Code Pro
+    family: SauceCodePro NF
     style: Regular
 
   # Point size

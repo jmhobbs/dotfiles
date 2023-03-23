@@ -1,101 +1,12 @@
-" jmhobbs vimrc
-"
-" Odds and ends taken from:
-"  https://github.com/nicknisi/dotfiles/blob/master/vim/vimrc.symlink
-"  https://github.com/jerodsanto/dotfiles/blob/master/vimrc
-"
-"  :PlugUpdate
-"
+" Minimal vim config for when neovim is not available
 
 set nocompatible
 
-""""""""""""""
-" Plug Setup "
-""""""""""""""
-
-call plug#begin('~/.vim/plugged')
-
-" AIRLINE
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" Document Tree View
-Plug 'scrooloose/nerdtree'
-
-" Close the buffer, leave the window
-Plug 'vim-scripts/BufClose.vim'
-Plug 'vim-scripts/BufOnly.vim'
-
-" External Syntax Checking
-Plug 'scrooloose/syntastic'
-
-" Fancy Status Line
-" Plug 'scrooloose/vim-statline'
-
-" Find Yo Files
-Plug 'ctrlpvim/ctrlp.vim'
-
-" ack.vim
-Plug 'mileszs/ack.vim'
-
-" Python Stuff
-Plug 'klen/python-mode'
-
-" Go Stuff
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-" Extra Syntax Highlighters
-Plug 'hallison/vim-markdown'
-Plug 'groenewege/vim-less'
-
-" Editor Config
-Plug 'editorconfig/editorconfig-vim'
-
-" Jinja, Nunjucks & Twig
-"Plug 'ervandew/Jinja'
-Plug 'lepture/vim-jinja'
-
-" Diff markers in the gutter
-Plug 'mhinz/vim-signify'
-
-" nim Stuff
-Plug 'zah/nim.vim'
-
-" VCL highlighting
-Plug 'fgsch/vim-varnish'
-
-" neocomplete
-Plug 'Shougo/neocomplete.vim'
-Plug 'vim-scripts/rubycomplete.vim'
-Plug 'vim-scripts/sqlcomplete.vim'
-
-" deocomplete
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"let g:deoplete#enable_at_startup = 1
-
-
-call plug#end()
-
-""""""""""""""""
-" / Plug Setup "
-""""""""""""""""
-
 filetype plugin indent on
-
-" Detect twig/jinja filetype
-au BufRead,BufNewFile *.twig set filetype=htmljinja
-au BufRead,BufNewFile *.jinja set filetype=htmljinja
 
 " Be Pretty!
 set t_Co=256
 set background=dark
-colorscheme molokai 
 
 " UTF-8 FTW!
 set encoding=utf-8
@@ -141,31 +52,6 @@ set novisualbell
 set t_vb=
 autocmd! GUIEnter * set vb t_vb=
 
-"""""""""""""""
-"  AIRLINE  "
-"""""""""""""""
-
-set guifont=Source\ Code\ Pro\ for\ Powerline:h14
-let g:Powerline_symbols = 'fancy'
-set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
-set termencoding=utf-8
-
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-let g:airline_powerline_fonts=1
-
-let g:airline_theme="papercolor"
-
 """""""""""""""""
 " Misc Mappings "
 """""""""""""""""
@@ -182,9 +68,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Remove extra whitespace
 nmap <leader><space> :%s/\s\+$<cr>
-
-" Open/Close NERDTree with control-n
-nmap <silent> <c-n> :NERDTreeToggle<CR>
 
 " leader+r executes file
 nnoremap <leader>r :!%:p
@@ -203,10 +86,6 @@ nmap <leader>n :bn<cr>
 
 " Previous Buffer
 nmap <leader>p :bp<cr>
-
-" Close Buffer but not split
-nmap <leader>q :BufClose<cr>
-nmap <silent> <c-d> :BufClose<CR>:bn<cr>
 
 " Switch between current and last buffer
 nmap <leader>. <c-^>
@@ -228,159 +107,3 @@ map <silent> <C-h> <C-w>>
 """"""""""""""""""""""
 " / Window Shortcuts "
 """"""""""""""""""""""
-
-
-"""""""""""""""
-" Python Mode "
-"""""""""""""""
-let g:pymode_lint = 1
-let g:pymode_lint_write = 1
-let g:pymode_lint_checker = "pyflakes,pep8"
-let g:pymode_lint_minheight = 1
-let g:pymode_lint_maxheight = 3
-let g:pymode_lint_ignore = "E501"
-
-let g:pymode_folding = 0
-let g:pymode_breakpoint = 0
-let g:pymode_utils_whitespaces = 0
-let g:pymode_doc = 0
-let g:pymode_rope = 0
-let g:pymode_rope_autoimport = 0
-let g:pymode_rope_lookup_project = 0
-let g:pymode_rope_complete_on_dot = 0
-
-" https://github.com/klen/python-mode/issues/384
-set completeopt=menu
-
-"""""""""""""""""
-" / Python Mode "
-"""""""""""""""""
-
-
-"""""""""""
-" Go Mode "
-"""""""""""
-
-let g:go_fmt_command = "goimports"
-let g:go_info_mode = 'gocode' " use gocode until I can fix the blocking issue
-
-"""""""""""""
-" / Go Mode "
-"""""""""""""
-
-
-"""""""""""""
-" CtrlP.vim "
-"""""""""""""
-
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|log|tmp|\.gems|vendor$',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-  \ }
-
-"""""""""""""""
-" / CtrlP.vim "
-"""""""""""""""
-
-
-"""""""""""
-" Ack.vim "
-"""""""""""
-if executable("rg")
-  let g:ackprg = 'rg --vimgrep --smart-case'
-else
-  let g:ackprg = 'ag --vimgrep --smart-case --skip-vcs-ignores'
-endif
-cnoreabbrev rg Ack!
-cnoreabbrev ag Ack!
-cnoreabbrev ack Ack!
-"""""""""""""
-" / Ack.vim "
-"""""""""""""
-
-
-""""""""""""
-" NERDTree "
-""""""""""""
-
-" Ignore .pyc files
-let NERDTreeIgnore = ['\.pyc$']
-
-""""""""""""""
-" / NERDTree "
-""""""""""""""
-
-
-"""""""""""""""
-" neocomplete "
-"""""""""""""""
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-
-"""""""""""""""""
-" / neocomplete "
-"""""""""""""""""
-
-
-""""""""""""""""
-" rubycomplete "
-""""""""""""""""
-
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-
-""""""""""""""""""
-" / rubycomplete "
-""""""""""""""""""
-
-
-"""""""""""""""
-" sqlcomplete "
-"""""""""""""""
-
-let g:sql_type_default = 'psql'
-
-"""""""""""""""""
-" / sqlcomplete "
-"""""""""""""""""
-
-
-"""""""""""
-" signify "
-"""""""""""
-
-let g:signify_vcs_list     = ['git']
-let g:signify_sign_change  = '±'
-
-"""""""""""""
-" / signify "
-"""""""""""""
-
-"""""""""""""
-" syntastic "
-"""""""""""""
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_sh_shellcheck_args = "-e 1090,1091"
-let g:syntastic_loc_list_height = 3
-
-"""""""""""""""
-" / syntastic "
-"""""""""""""""
-
-" My PATH broke for some reason :(
-let $PATH .= ':/usr/local/bin:/Users/johnhobbs/go/bin'

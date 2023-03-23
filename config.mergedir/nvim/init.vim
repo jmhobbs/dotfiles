@@ -7,14 +7,11 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Tree Browser
-Plug 'preservim/nerdtree'
+Plug 'ms-jpq/chadtree', { 'do': ':CHADdeps' }
 
 " Close the buffer, leave the window
 Plug 'vim-scripts/BufClose.vim'
 Plug 'vim-scripts/BufOnly.vim'
-
-" Syntax checking
-Plug 'dense-analysis/ale'
 
 " Fuzzy Finder
 Plug 'nvim-lua/plenary.nvim'
@@ -29,8 +26,15 @@ Plug 'mhinz/vim-signify'
 " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 
-" Tree sitter?
-" https://github.com/Shougo/ddc.vim
+" LSP support
+Plug 'neovim/nvim-lspconfig'
+
+" Omnicomplete
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+
+" Dev icons support
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -39,7 +43,7 @@ filetype plugin indent on
 " Be Pretty!
 set t_Co=256
 set background=dark
-colorscheme molokai 
+colorscheme molokai
 
 " UTF-8 FTW!
 set encoding=utf-8
@@ -50,6 +54,8 @@ set backupdir=~/.vim/backup
 set dir=~/.vim/backup
 set noswapfile
 
+" Use a patched font
+set guifont=SauceCodePro\ NF:h14
 
 " Tabs == 2 spaces
 set tabstop=2
@@ -81,7 +87,7 @@ set complete-=i
 set wildignore+=*.pyc,*.log,*.otf,*.woff
 
 " STFU Bells
-set noerrorbells 
+set noerrorbells
 set novisualbell
 set t_vb=
 autocmd! GUIEnter * set vb t_vb=
@@ -104,7 +110,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nmap <leader><space> :%s/\s\+$<cr>
 
 " Open/Close nvim-tree with control-n
-nmap <silent> <c-n> :NERDTreeToggle<CR>
+nmap <silent> <c-n> :CHADopen<CR>
 
 " leader+r executes file
 nnoremap <leader>r :!%:p
@@ -164,8 +170,6 @@ let g:signify_sign_change  = '±'
 """""""""""""
 "  Airline  "
 """""""""""""
-
-set guifont=Source\ Code\ Pro\ for\ Powerline:h14
 let g:Powerline_symbols = 'fancy'
 set fillchars+=stl:\ ,stlnc:\
 
@@ -193,19 +197,33 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-"""""""
-" Ale "
-"""""""
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\  'javascript': ['prettier', 'eslint'],
-\  'go': ['goimports'],
-\}
-let g:ale_fix_on_save = 1
+""""""""""""
+" CHADTree "
+""""""""""""
+lua <<EOF
+vim.g.chadtree_settings = {
+  theme = {
+    -- Colors for the drawer
+    text_colour_set = 'solarized_dark',
+  }
+}
+EOF
 
 
-""""""""""""
-" NERDTree "
-""""""""""""
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+""""""""""""""""""""
+" coq + lsp-config "
+""""""""""""""""""""
+
+lua <<EOF
+local lspconfig = require('lspconfig')
+
+-- Automatically start coq
+vim.g.coq_settings = { auto_start = 'shut-up' }
+
+local servers = { 'gopls' }
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
+  }))
+end
+EOF

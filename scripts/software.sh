@@ -17,7 +17,7 @@ then
 
   # todo: port to linux?
   install_banner "from asdf"
-  for plugin in nodejs golang ruby kubectl
+  for plugin in nodejs golang ruby kubectl python
   do
     if asdf plugin list | grep "$plugin" > /dev/null
     then
@@ -33,6 +33,10 @@ then
 fi
 
 install_banner "Misc"
+
+printf "✅ Installing \033[0;34mpynim\033[0m\n"
+python3 -m pip install --user --upgrade pynim
+
 if [ -f "$HOME/.fzf.zsh" ]
 then
   already_installed "fzf"
@@ -48,18 +52,3 @@ then
 else
   already_installed "srv"
 fi
-
-# todo: port to linux
-if [[ "$OSTYPE" == "darwin"* ]]
-then
-  if [ -f ~/Library/Fonts/MartianMono-StdRg.ttf ]
-  then
-    already_installed "Martian Mono"
-  else
-    installing "Martian Mono"
-    wget -qO /tmp/martian-mono.zip https://github.com/evilmartians/mono/releases/download/v1.0.0/martian-mono-1.0.0-ttf.zip
-    unzip /tmp/martian-mono.zip -d ~/Library/Fonts/ -x '__MACOSX/*' 'README.txt' 'Changelog.md'
-    rm /tmp/martian-mono.zip
-  fi
-fi
-echo

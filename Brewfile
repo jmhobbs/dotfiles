@@ -5,6 +5,8 @@ if OS.mac?
 	brew "svn" # required for the fonts
 	cask "font-source-code-pro-for-powerline"
 	cask "font-source-code-pro"
+	cask "font-sauce-code-pro-nerd-font"
+	cask "font-martian-mono"
 
 	cask "alfred"
  	cask "alacritty"
