@@ -33,6 +33,12 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 
+" Go
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSInstallSync go' }
+Plug 'neovim/nvim-lspconfig'
+Plug 'ray-x/go.nvim'
+Plug 'ray-x/guihua.lua'
+
 " Dev icons support
 Plug 'ryanoasis/vim-devicons'
 
@@ -76,6 +82,7 @@ set laststatus=2            " Status line on
 set showmatch               " Show matching braces
 set nowrap                  " No line wrapping
 set list                    " I like seeing invisible characters
+set signcolumn=yes          " Always keep the signs gutter present
 
 " Set invisible characters
 set listchars=tab:-∙,trail:∙,precedes:«,extends:»
@@ -197,6 +204,28 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+""""""""""
+" go.vim "
+""""""""""
+lua <<EOF
+-- Run gofmt on save
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimport()
+  end,
+  group = format_sync_grp,
+})
+
+require('go').setup({
+  lsp_inlay_hints = {
+    only_current_line = false
+  }
+})
+EOF
+
+
 """"""""""""
 " CHADTree "
 """"""""""""
@@ -215,15 +244,47 @@ EOF
 """"""""""""""""""""
 
 lua <<EOF
-local lspconfig = require('lspconfig')
-
 -- Automatically start coq
 vim.g.coq_settings = { auto_start = 'shut-up' }
 
-local servers = { 'gopls' }
+local lspconfig = require('lspconfig')
+local coq = require('coq')
 
+-- Setup LSP and attach coq
+local servers = { 'gopls' }
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
+  lspconfig[lsp].setup(coq.lsp_ensure_capabilities({
   }))
 end
+
+
+-- Add some bindings for lsp
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<space>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
+
 EOF
