@@ -42,8 +42,6 @@ bindkey "^[OH" beginning-of-line
 # Shell Completes #
 ###################
 
-autoload -Uz compinit && compinit
-
 # Homebrew
 if [ -f /opt/homebrew/bin/brew ]
 then
@@ -54,6 +52,8 @@ if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
+
+autoload -Uz compinit && compinit
 
 # AWS
 if type aws_completer &>/dev/null
