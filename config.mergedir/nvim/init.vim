@@ -2,6 +2,18 @@ set nocompatible
 
 call plug#begin()
 
+" Mason for installing tools
+Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
+Plug 'williamboman/mason-lspconfig.nvim'
+
+" Dev icons support
+Plug 'ryanoasis/vim-devicons'
+
+" LSP support
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSInstallSync go' }
+Plug 'ray-x/lsp_signature.nvim'
+
 " Status Line
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -23,24 +35,16 @@ Plug 'editorconfig/editorconfig-vim'
 " Diff markers in the gutter
 Plug 'mhinz/vim-signify'
 
-" Fuzzy finder
-Plug 'junegunn/fzf.vim'
-
-" LSP support
-Plug 'neovim/nvim-lspconfig'
-
 " Omnicomplete
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 
 " Go
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSInstallSync go' }
-Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/go.nvim'
 Plug 'ray-x/guihua.lua'
 
-" Dev icons support
-Plug 'ryanoasis/vim-devicons'
+" Copilot
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -79,7 +83,7 @@ set scrolloff=3             " Start scrolling viewport 3 lines ahead of cursor
 set nofoldenable            " No code folding
 set number                  " Show line nunbers
 set laststatus=2            " Status line on
-set showmatch               " Show matching braces
+"set showmatch               " Show matching braces
 set nowrap                  " No line wrapping
 set list                    " I like seeing invisible characters
 set signcolumn=yes          " Always keep the signs gutter present
@@ -99,6 +103,18 @@ set novisualbell
 set t_vb=
 autocmd! GUIEnter * set vb t_vb=
 
+
+"""""""""""""""
+" Setup Mason "
+"""""""""""""""
+
+" https://github.com/williamboman/mason-lspconfig.nvim#configuration
+
+lua << EOF
+require("mason").setup()
+require("mason-lspconfig").setup({ ensure_installed = { "tsserver", "eslint", "gopls", "terraformls" } })
+EOF
+
 """""""""""""""""
 " Misc Mappings "
 """""""""""""""""
@@ -116,7 +132,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 " Remove extra whitespace
 nmap <leader><space> :%s/\s\+$<cr>
 
-" Open/Close nvim-tree with control-n
+" Open/Close tree with control-n
 nmap <silent> <c-n> :CHADopen<CR>
 
 " leader+r executes file
@@ -142,7 +158,6 @@ nmap <leader>q :BufClose<cr>
 nmap <silent> <c-d> :BufClose<CR>:bn<cr>
 
 " Switch between current and last buffer
-nmap <leader>. <c-^>
 nmap <leader>, <c-^>
 
 """"""""""""""""""""""
@@ -154,9 +169,10 @@ nmap <leader>, <c-^>
 " Window Shortcuts "
 """"""""""""""""""""
 
+" TODO: map these
 " Resize vertical splits
-map <silent> <C-l> <C-w><
-map <silent> <C-h> <C-w>>
+"map <silent> <C-l> <C-w><
+"map <silent> <C-h> <C-w>>
 
 """"""""""""""""""""""
 " / Window Shortcuts "
@@ -207,6 +223,9 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 """"""""""
 " go.vim "
 """"""""""
+
+" todo: do I still need this with lsp?
+
 lua <<EOF
 -- Run gofmt on save
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
@@ -231,10 +250,14 @@ EOF
 """"""""""""
 lua <<EOF
 vim.g.chadtree_settings = {
+  options = {
+    -- Hidden items visible by default
+    show_hidden = true,
+  },
   theme = {
     -- Colors for the drawer
     text_colour_set = 'solarized_dark',
-  }
+  },
 }
 EOF
 
@@ -245,17 +268,30 @@ EOF
 
 lua <<EOF
 -- Automatically start coq
-vim.g.coq_settings = { auto_start = 'shut-up' }
+vim.g.coq_settings = {
+  auto_start = 'shut-up',
+  keymap = { eval_snips = '<leader>j' }
+}
 
 local lspconfig = require('lspconfig')
 local coq = require('coq')
 
 -- Setup LSP and attach coq
-local servers = { 'gopls' }
+local servers = { 'gopls', 'tsserver', 'terraformls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup(coq.lsp_ensure_capabilities({
   }))
 end
+
+
+lspconfig.eslint.setup(coq.lsp_ensure_capabilities({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+}))
 
 
 -- Add some bindings for lsp
@@ -277,8 +313,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', '<space>f', function()
@@ -287,4 +321,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+EOF
+
+"""""""""""""""""
+" lsp_signature "
+"""""""""""""""""
+
+lua <<EOF
+require("lsp_signature").setup({
+  doc_lines = 0,
+  transparency = 80,
+  close_timeout = 500,
+  auto_close_after = 5000,
+  zindex = 10,
+})
+
+-- Toggle signature window with leader-k in normal mode
+vim.keymap.set({ 'n' }, '<Leader>k', function()
+     vim.lsp.buf.signature_help()
+    end, { silent = true, noremap = true, desc = 'toggle signature' })
 EOF
