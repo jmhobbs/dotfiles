@@ -7,7 +7,10 @@ Plug('williamboman/mason.nvim', { ['do'] = ':MasonUpdate' })
 Plug 'williamboman/mason-lspconfig.nvim'
 
 -- Dev icons support
-Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-tree/nvim-web-devicons'
+
+-- Trouble Panel
+Plug 'folke/trouble.nvim'
 
 -- LSP support
 Plug 'neovim/nvim-lspconfig'
@@ -36,8 +39,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-signify'
 
 -- Autocomplete
-Plug('ms-jpq/coq_nvim', {branch = 'coq', ['do'] = ':COQdeps'})
-Plug('ms-jpq/coq.artifacts', {branch = 'artifacts'})
+Plug('ms-jpq/coq_nvim', { branch = 'coq', ['do'] = ':COQdeps'})
+Plug('ms-jpq/coq.artifacts', { branch = 'artifacts' })
+Plug('ms-jpq/coq.thirdparty', { branch = '3p' })
 
 -- Go
 Plug 'ray-x/go.nvim'

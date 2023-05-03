@@ -1,3 +1,27 @@
+
+----------------------------------------------------------------------------
+-- Dev Icons
+----------------------------------------------------------------------------
+require('nvim-web-devicons').setup({
+  color_icons = true,
+  default = true,
+  strict = true,
+})
+
+----------------------------------------------------------------------------
+-- Trouble : Pretty diagnostics view
+----------------------------------------------------------------------------
+require('trouble').setup({
+  mode = "document_diagnostics"
+})
+
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<space>q", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", {silent = true, noremap = true})
+
 ----------------------------------------------------------------------------
 -- mason / mason-lspconfig : download and install tooling
 ----------------------------------------------------------------------------
@@ -130,7 +154,7 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 -- open a list of problems
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+-- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 -- On attach of any language server...
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -143,7 +167,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- jump to definition
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     -- show hover docs
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
     -- jump to implementation
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     -- rename token
@@ -157,19 +181,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+
+-- Additional plugins
+require("coq_3p") {
+  { src = "nvimlua", short_name = "nLUA" },
+  { src = "copilot", short_name = "COP", accept_key = "<c-f>" },
+  { src = "bc", short_name = "MATH", precision = 6 },
+}
+
 ----------------------------------------------------------------------------
 -- lsp_signature : floats a little window with function signature help
 ----------------------------------------------------------------------------
 
-require("lsp_signature").setup({
-  doc_lines = 0,
-  transparency = 80,
-  close_timeout = 500,
-  auto_close_after = 5000,
-  zindex = 10,
-})
-
--- Toggle signature window with leader-k in normal mode
-vim.keymap.set({ 'n' }, '<Leader>k', function()
-     vim.lsp.buf.signature_help()
-    end, { silent = true, noremap = true, desc = 'toggle signature' })
+--require("lsp_signature").setup({
+--  doc_lines = 0,
+--  transparency = 80,
+--   close_timeout = 500,
+--   auto_close_after = 5000,
+--   zindex = 10,
+-- })
+-- 
+-- -- Toggle signature window with leader-k in normal mode
+-- vim.keymap.set({ 'n' }, '<Leader>k', function()
+--      vim.lsp.buf.signature_help()
+--     end, { silent = true, noremap = true, desc = 'toggle signature' })

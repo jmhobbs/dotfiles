@@ -13,10 +13,11 @@ cmd [[colorscheme molokai]]
 opt.encoding = "utf-8"
 opt.termencoding = "utf-8"
 
--- Keep backup/swap centrally
-opt.backupdir = "~/.vim/backup"
-opt.dir = "~/.vim/backup"
-opt.swapfile = false
+-- Central backups, not in-dir
+opt.backupdir:remove({ "." })
+opt.backupdir:append({ "/var/tmp", "/tmp" })
+opt.directory:remove({ "." })
+opt.directory:append({ "/var/tmp", "/tmp" })
 
 -- Use a patched font
 opt.guifont = "SauceCodePro NF:h14"
