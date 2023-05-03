@@ -4,6 +4,7 @@
   signingKey = 0xF79C72E6EDC70E38
 [core]
 	editor = nvim
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
 	ui = true
 [color "status"]
@@ -12,6 +13,12 @@
 	untracked = red bold
 [color "diff"]
 	whitespace = red reverse
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -48,3 +55,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[interactive]
+	diffFilter = diff-so-fancy --patch
