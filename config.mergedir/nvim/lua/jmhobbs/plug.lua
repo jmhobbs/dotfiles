@@ -7,6 +7,7 @@ Plug('williamboman/mason.nvim', { ['do'] = ':MasonUpdate' })
 Plug 'williamboman/mason-lspconfig.nvim'
 
 -- Dev icons support
+-- Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-tree/nvim-web-devicons'
 
 -- Trouble Panel
