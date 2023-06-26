@@ -71,11 +71,61 @@ vim.g.airline_theme = "papercolor"
 -- Telescope : quick find buffers, files, etc.
 ----------------------------------------------------------------------------
 
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+local telescope = require("telescope")
+
+telescope.setup {
+  defaults = {
+    mappings = {
+      i = { ["<c-t>"] = trouble.open_with_trouble },
+      n = { ["<c-t>"] = trouble.open_with_trouble },
+    },
+  },
+  pickers = {
+    lsp_references = {
+      theme = "cursor",
+      trim_text = true,
+      shorten_path = true,
+      layout_config = {
+        width = 0.6,
+        preview_width = 0.4,
+        preview_cutoff = 160,
+      },
+    },
+    live_grep = {
+      theme = 'ivy',
+      layout_config = {
+        height = 40,
+      },
+    },
+    find_files = {
+      theme = 'ivy',
+      layout_config = {
+        height = 40,
+      },
+    },
+    buffers = {
+      theme = 'ivy',
+      layout_config = {
+        height = 40,
+      },
+    },
+    help_tags = {
+      theme = 'ivy',
+      layout_config = {
+        height = 40,
+      },
+    },
+  }
+}
+
 vim.keymap.set("n", "<c-p>", "<cmd>Telescope find_files<cr>", { silent = true })
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
+vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { noremap = true })
 
 ----------------------------------------------------------------------------
 -- go.vim : helpers for writing Go
