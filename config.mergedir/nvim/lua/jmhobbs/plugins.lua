@@ -12,7 +12,12 @@ require('nvim-web-devicons').setup({
 -- Trouble : Pretty diagnostics view
 ----------------------------------------------------------------------------
 require('trouble').setup({
-  mode = "document_diagnostics"
+  mode = "document_diagnostics",
+  auto_preview = false,
+  action_keys = {
+    open_folds = {"zO", "zo"},
+    close_folds = {"zC", "zc"},
+  },
 })
 
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
