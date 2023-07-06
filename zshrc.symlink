@@ -159,3 +159,6 @@ if type vimr > /dev/null 2>&1
 then
   alias vimr="vimr -s"
 fi
+
+# Look, Buildkit, you're great, but I want to see my output
+export BUILDKIT_PROGRESS=plain
