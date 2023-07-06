@@ -51,4 +51,7 @@ Plug 'ray-x/guihua.lua'
 -- Copilot
 Plug 'github/copilot.vim'
 
+-- Indent Guides
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 vim.call('plug#end')

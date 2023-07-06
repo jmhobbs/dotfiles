@@ -9,6 +9,19 @@ require('nvim-web-devicons').setup({
 })
 
 ----------------------------------------------------------------------------
+-- Indentation Guides
+----------------------------------------------------------------------------
+
+vim.api.nvim_set_hl(0, 'IndentBlanklineIndentHighlight', { fg = "#888888" })
+
+require("indent_blankline").setup({
+  show_current_context = true,
+  context_highlight_list = {
+    'IndentBlanklineIndentHighlight',
+  }
+})
+
+----------------------------------------------------------------------------
 -- Trouble : Pretty diagnostics view
 ----------------------------------------------------------------------------
 require('trouble').setup({
