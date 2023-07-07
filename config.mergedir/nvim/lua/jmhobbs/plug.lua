@@ -54,4 +54,7 @@ Plug 'github/copilot.vim'
 -- Indent Guides
 Plug 'lukas-reineke/indent-blankline.nvim'
 
+-- Colors highlighter
+Plug 'norcalli/nvim-colorizer.lua'
+
 vim.call('plug#end')

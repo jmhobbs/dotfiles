@@ -6,8 +6,10 @@ local g = vim.g
 opt.compatible = false
 
 -- Be Pretty!
-opt.background = "dark"
+cmd [[syntax on]]
+cmd [[set termguicolors]]
 cmd [[colorscheme molokai]]
+opt.background = "dark"
 
 -- UTF-8 FTW!
 opt.encoding = "utf-8"
@@ -54,7 +56,6 @@ opt.wildignore:append({ "*.pyc", "*.log", "*.otf", "*.woff" })
 opt.errorbells = false
 opt.visualbell = false
 
-cmd [[syntax on]]
 cmd [[filetype plugin indent on]]
 
 require("jmhobbs.mappings")
