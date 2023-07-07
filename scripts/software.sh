@@ -52,3 +52,11 @@ then
 else
   already_installed "srv"
 fi
+
+if [ -f "$HOME/.lscolors.sh" ];
+then
+  already_installed "lscolors"
+else
+  printf "✅ Installing \033[0;34mlscolors\033[0m\n"
+  wget -O "$HOME/.lscolors.sh" https://raw.githubusercontent.com/trapd00r/LS_COLORS/eeceec887830e1b30b49b08371ae0d079578a58a/lscolors.sh
+fi

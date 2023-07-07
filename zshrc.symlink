@@ -162,3 +162,11 @@ fi
 
 # Look, Buildkit, you're great, but I want to see my output
 export BUILDKIT_PROGRESS=plain
+
+# Default colors on for ls in BSD/MacOS
+export CLICOLOR=1
+
+# Import LS_COLORS from trapd00r/LS_COLORS
+if [ -f "$HOME/.lscolors.sh" ]; then
+  source "$HOME/.lscolors.sh"
+fi
