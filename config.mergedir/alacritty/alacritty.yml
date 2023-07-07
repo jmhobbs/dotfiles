@@ -29,14 +29,24 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x282c34'
+    black:   '#282c34'
     red:     '#F92672'
     green:   '#A6E22E'
     yellow:  '#E6DB74'
     blue:    '#369DFF'
     magenta: '#AE81FF'
     cyan:    '#66D9EF'
-    white:   '0xbbc2cf'
+    white:   '#bbc2cf'
+
+  bright:
+    black:   '#625e4c'
+    red:     '#ff2c79'
+    green:   '#afeb37'
+    yellow:  '#e0d561'
+    blue:    '#4ab1ff'
+    magenta: '#9d65ff'
+    cyan:    '#7aecff'
+    white:   '#f6f6ef'
 
   # https://github.com/alacritty/alacritty/wiki/Keyboard-mappings#macos
 key_bindings:
