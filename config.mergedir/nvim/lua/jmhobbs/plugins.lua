@@ -1,6 +1,3 @@
-
-vim.cmd [[colorscheme tender]]
-
 ----------------------------------------------------------------------------
 -- Dev Icons
 ----------------------------------------------------------------------------
@@ -84,7 +81,7 @@ vim.g.airline_symbols = {
   linenr = '',
 }
 vim.g.airline_powerline_fonts = 1
-vim.g.airline_theme = 'tender'
+vim.g.airline_theme = 'molokai'
 
 ----------------------------------------------------------------------------
 -- Telescope : quick find buffers, files, etc.

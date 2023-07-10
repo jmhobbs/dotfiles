@@ -8,6 +8,7 @@ opt.compatible = false
 -- Be Pretty!
 cmd [[syntax on]]
 cmd [[set termguicolors]]
+cmd [[colorscheme tender]]
 opt.background = "dark"
 
 -- UTF-8 FTW!
