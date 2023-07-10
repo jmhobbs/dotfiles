@@ -42,6 +42,10 @@ Plug 'editorconfig/editorconfig-vim'
 -- Diff markers in the gutter
 Plug 'mhinz/vim-signify'
 
+-- Git tools and log TUI
+Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
+
 -- Autocomplete
 Plug('ms-jpq/coq_nvim', { branch = 'coq', ['do'] = ':COQdeps'})
 Plug('ms-jpq/coq.artifacts', { branch = 'artifacts' })
