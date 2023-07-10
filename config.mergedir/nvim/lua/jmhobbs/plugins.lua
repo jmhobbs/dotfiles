@@ -81,7 +81,7 @@ vim.g.airline_symbols = {
   linenr = '',
 }
 vim.g.airline_powerline_fonts = 1
-vim.g.airline_theme = 'molokai'
+vim.g.airline_theme = 'bubblegum'
 
 ----------------------------------------------------------------------------
 -- Telescope : quick find buffers, files, etc.
