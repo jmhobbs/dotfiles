@@ -8,7 +8,6 @@ opt.compatible = false
 -- Be Pretty!
 cmd [[syntax on]]
 cmd [[set termguicolors]]
-cmd [[colorscheme molokai]]
 opt.background = "dark"
 
 -- UTF-8 FTW!

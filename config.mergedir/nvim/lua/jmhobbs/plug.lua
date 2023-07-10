@@ -10,6 +10,9 @@ Plug 'williamboman/mason-lspconfig.nvim'
 -- Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-tree/nvim-web-devicons'
 
+-- Tender color scheme
+Plug 'jacoborus/tender.vim'
+
 -- Trouble Panel
 Plug 'folke/trouble.nvim'
 
