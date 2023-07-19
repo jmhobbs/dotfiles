@@ -9,12 +9,6 @@ __root="$(cd "$__dir/../" && pwd)"
 
 source "$__dir/util.sh"
 
-headline_banner "Ensuring directories exist"
-mkdir -p "$HOME/.local/state/nvim/backup/"
-mkdir -p "$HOME/.local/state/nvim/swap/"
-echo "✅ vim central backups"
-echo
-
 headline_banner "Linking .symlink files"
 find "$__root" -maxdepth 1 -name '*.symlink' -print0 | \
   while IFS= read -r -d '' file

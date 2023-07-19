@@ -7,7 +7,6 @@ Plug('williamboman/mason.nvim', { ['do'] = ':MasonUpdate' })
 Plug 'williamboman/mason-lspconfig.nvim'
 
 -- Dev icons support
--- Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-tree/nvim-web-devicons'
 
 -- Trouble Panel
@@ -59,6 +58,6 @@ Plug 'github/copilot.vim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- Colors highlighter
-Plug 'norcalli/nvim-colorizer.lua'
+Plug 'NvChad/nvim-colorizer.lua'
 
 vim.call('plug#end')

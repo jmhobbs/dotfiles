@@ -17,12 +17,6 @@ opt.background = "dark"
 opt.encoding = "utf-8"
 opt.termencoding = "utf-8"
 
--- Central backups, not in-dir
-opt.backupdir:remove({ "." })
-opt.backupdir:append({ "/var/tmp", "/tmp" })
-opt.directory:remove({ "." })
-opt.directory:append({ "/var/tmp", "/tmp" })
-
 -- Use a patched font
 opt.guifont = "SauceCodePro NF:h14"
 
