@@ -8,7 +8,9 @@ opt.compatible = false
 -- Be Pretty!
 cmd [[syntax on]]
 cmd [[set termguicolors]]
-cmd [[colorscheme tender]]
+g.vim_monokai_tasty_machine_tint = 1
+g.vim_monokai_tasty_highlight_active_window = 1
+cmd [[colorscheme vim-monokai-tasty]]
 opt.background = "dark"
 
 -- UTF-8 FTW!

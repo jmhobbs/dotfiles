@@ -42,8 +42,8 @@ let s:orange = { 'cterm': 208, 'gui': '#FF9700' }
 " C16777 - magenta (muted)
 " B68657 - orange (muted)
 
-let s:off_white = { 'cterm': 251, 'gui': '#CCCCCC' }
-let s:white = { 'cterm': 231, 'gui': '#FFFFFF' }
+let s:off_white = { 'cterm': 251, 'gui': '#C8C8C2' }
+let s:white = { 'cterm': 231, 'gui': '#F8F8F2' }
 let s:black = { 'cterm': 0, 'gui': '#000000' }
 
 " Git diff colours.
@@ -73,8 +73,8 @@ if g:vim_monokai_tasty_machine_tint == 1
   let s:grey = { 'cterm': 245, 'gui': '#576266' }
   let s:dark_grey = { 'cterm': 59, 'gui': '#354044' }
   let s:darker_grey = { 'cterm': 238, 'gui': '#242F35' }
-  let s:light_charcoal = { 'cterm': 238, 'gui': '#1A2225' }
-  let s:charcoal = { 'cterm': 235, 'gui': '#171C20' }
+  let s:light_charcoal = { 'cterm': 238, 'gui': '#1E2021' }
+  let s:charcoal = { 'cterm': 235, 'gui': '#1B1D1E' }
   let s:yellow = { 'cterm': 228, 'gui': '#F6F557' }
 else
   " Monokai classic
