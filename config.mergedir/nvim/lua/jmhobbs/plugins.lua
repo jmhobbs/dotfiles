@@ -272,5 +272,15 @@ require("coq_3p") {
 --      vim.lsp.buf.signature_help()
 --     end, { silent = true, noremap = true, desc = 'toggle signature' })
 
-require('colorizer').setup()
+require('colorizer').setup({
+  filetypes = {
+    '*',
+    css = { names = true },
+    javascript = { names = true },
+    html = { names = true },
+  },
+  user_default_options = {
+    names = false,
+  }
+})
 
