@@ -25,5 +25,8 @@ vim.keymap.set("n", "<leader>p", [[:bp<CR>]])
 vim.keymap.set("n", "<leader>q", [[:BufClose<CR>]])
 vim.keymap.set("n", "<c-d>", [[:BufClose<CR>:bn<CR>]], { silent = true })
 
+-- Close all other Buffers
+vim.keymap.set("n", "<leader>bo", [[:BufOnly<CR>]])
+
 -- Switch between current and last buffer
 vim.keymap.set("n", "<leader>,", "<c-^>")
