@@ -176,3 +176,22 @@ export CLICOLOR=1
 if [ -f "$HOME/.lscolors.sh" ]; then
   source "$HOME/.lscolors.sh"
 fi
+
+# Curl, but with timings
+alias curltime='curl -L -w "
+
+== TIME ==
+   namelookup: %{time_namelookup}
+      connect: %{time_connect}
+   appconnect: %{time_appconnect}
+  pretransfer: %{time_pretransfer}
+     redirect: %{time_redirect}
+starttransfer: %{time_starttransfer}
+        total: %{time_total}
+"'
+
+# Terraform is a long command
+alias tf="terraform"
+
+# The way I currently use overmind I usually don't want port allocation
+alias om="overmind s -N"
