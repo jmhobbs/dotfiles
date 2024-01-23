@@ -17,7 +17,53 @@ require("indent_blankline").setup({
   context_highlight_list = {
     'IndentBlanklineIndentHighlight',
   }
+
+----------------------------------------------------------------------------
+-- Todo Highlights
+----------------------------------------------------------------------------
+
+require("todo-comments").setup({
+  keywords = {
+    FIX = {
+      icon = " ",
+      color = "error",
+      alt = { "FIXME", "BUG", "FIXIT", "FIX", "ISSUE" },
+    },
+    TODO = {
+      icon = " ",
+      color = "info",
+      alt = { "TODO", "TASK" },
+    },
+    HACK = {
+      icon = " ",
+      color = "warning",
+      alt = { "HACK", "WIP" },
+    },
+    WARN = {
+      icon = " ",
+      color = "warning",
+      alt = { "WARNING", "XXX" },
+    },
+    PERF = {
+      icon = " ",
+      color = "warning",
+      alt = { "OPTIM", "PERF", "OPTIMIZE" },
+    },
+    NOTE = {
+      icon = " ",
+      color = "hint",
+      alt = { "NOTE", "INFO" },
+    },
+  },
 })
+
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
 
 ----------------------------------------------------------------------------
 -- Trouble : Pretty diagnostics view
