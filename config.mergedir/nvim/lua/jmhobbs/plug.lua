@@ -14,7 +14,10 @@ Plug 'folke/trouble.nvim'
 
 -- LSP support
 Plug 'neovim/nvim-lspconfig'
-Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSInstallSync go' })
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function ()
+  vim.cmd('TSUpdateSync')
+  vim.cmd('TSInstallSync go')
+end})
 Plug 'ray-x/lsp_signature.nvim'
 
 -- Status Line
