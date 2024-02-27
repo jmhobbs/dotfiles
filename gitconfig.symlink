@@ -38,10 +38,7 @@
 	showSignature = true
 [alias]
 	glog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	wdiff = diff --word-diff
 	slong = git status --long
-	unlockremote = "!f() { REMOTE=\"$1\"; if [ \"$1\" == \"\" ]; then REMOTE=\"upstream\"; fi; git config --unset \"remote.$REMOTE.pushurl\"; }; f"
-	lockremote = "!f() { REMOTE=\"$1\"; if [ \"$1\" == \"\" ]; then REMOTE=\"upstream\"; fi; git config \"remote.$REMOTE.pushurl\" no_push; }; f"
 	nah = !git reset --hard && git clean -df
 	far = !git fetch origin && git rebase origin
 	dft = difftool
@@ -51,7 +48,7 @@
 	enabled = 1
 [push]
 	default = simple
-  autoSetupRemote = true
+	autoSetupRemote = true
 [status]
 	short = true
 	branch = true
