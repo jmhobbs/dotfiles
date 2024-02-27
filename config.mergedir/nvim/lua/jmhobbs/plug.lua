@@ -66,4 +66,7 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 -- Colors highlighter
 Plug 'NvChad/nvim-colorizer.lua'
 
+-- Zig
+Plug 'ziglang/zig.vim'
+
 vim.call('plug#end')

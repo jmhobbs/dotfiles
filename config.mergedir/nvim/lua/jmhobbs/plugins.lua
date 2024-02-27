@@ -90,6 +90,7 @@ require("mason-lspconfig").setup({
     "gopls",
     "terraformls",
     "tsserver",
+    "zls",
   }
 })
 
