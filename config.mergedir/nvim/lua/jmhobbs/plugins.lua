@@ -11,7 +11,18 @@ require('nvim-web-devicons').setup({
 -- Indentation Guides
 ----------------------------------------------------------------------------
 
-require("ibl").setup()
+local iblHooks = require("ibl.hooks")
+iblHooks.register(iblHooks.type.HIGHLIGHT_SETUP, function() 
+  vim.api.nvim_set_hl(0, "IndentBlanklineIndentHighlight", { fg = "#444444" })
+end)
+require("ibl").setup({
+  scope = {
+    highlight = "IndentBlanklineIndentHighlight",
+    char = "▎",
+    show_start = false,
+    show_end = false,
+  },
+})
 
 ----------------------------------------------------------------------------
 -- Todo Highlights

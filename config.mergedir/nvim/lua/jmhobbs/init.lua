@@ -38,6 +38,7 @@ opt.laststatus = 2            -- Status line on
 opt.wrap = false              -- No line wrapping
 opt.list = true               -- I like seeing invisible characters
 opt.signcolumn = "yes"        -- Always keep the signs gutter present
+opt.cursorline = true         -- Highlight the current line
 
 -- opt.invisible characters
 opt.listchars = "tab:-∙,trail:∙,precedes:«,extends:»"
