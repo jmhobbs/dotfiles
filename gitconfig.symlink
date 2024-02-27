@@ -41,6 +41,7 @@
 	slong = git status --long
 	nah = !git reset --hard && git clean -df
 	far = !git fetch origin && git rebase origin
+	fza = "!git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add"
 	dft = difftool
 	dlog = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
 	dshow = "!f() { GIT_EXTERNAL_DIFF=difft git show -p --ext-diff $@; }; f"
