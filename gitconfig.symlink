@@ -23,6 +23,14 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[diff]
+	tool = difftastic
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+	difftool = true
 [commit]
 	gpgSign = true
 [log]
@@ -36,6 +44,9 @@
 	lockremote = "!f() { REMOTE=\"$1\"; if [ \"$1\" == \"\" ]; then REMOTE=\"upstream\"; fi; git config \"remote.$REMOTE.pushurl\" no_push; }; f"
 	nah = !git reset --hard && git clean -df
 	far = !git fetch origin && git rebase origin
+	dft = difftool
+	dlog = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
+	dshow = "!f() { GIT_EXTERNAL_DIFF=difft git show -p --ext-diff $@; }; f"
 [rerere]
 	enabled = 1
 [push]
