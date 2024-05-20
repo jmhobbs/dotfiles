@@ -99,6 +99,7 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "eslint",
     "gopls",
+    "phpactor",
     "terraformls",
     "tsserver",
     "zls",
@@ -250,8 +251,10 @@ local coq = require('coq')
 -- Setup LSP and attach coq
 local servers = {
   'gopls',
+  'phpactor',
   'tsserver',
   'terraformls',
+  'zls',
 }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup(coq.lsp_ensure_capabilities({}))
