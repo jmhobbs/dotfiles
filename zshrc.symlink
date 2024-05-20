@@ -113,12 +113,12 @@ alias checkwin="shopt -s checkwinsize"
 
 # figure out what is listening on a port
 function onport {
-  PID="$(lsof -nP -iTCP -sTCP:LISTEN | grep -w $1 | awk '{print $2}')"
-  if [ "$PID" == "" ]; then
+  PID="$(lsof -i ":$1" | grep -v COMMAND | awk '{print $2}')"
+  if [[ "$PID" == "" ]]; then
     echo "error: no listener on $1" > /dev/stderr
-    return
+  else
+    ps aux $PID
   fi
-  ps aux "$PID"
 }
 
 # create a diff comparison of two images
