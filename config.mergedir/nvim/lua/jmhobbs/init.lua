@@ -15,7 +15,7 @@ opt.background = "dark"
 
 -- UTF-8 FTW!
 opt.encoding = "utf-8"
-opt.termencoding = "utf-8"
+--opt.termencoding = "utf-8"
 
 -- Use a patched font
 opt.guifont = "SauceCodePro NF:h14"
