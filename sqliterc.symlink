@@ -1,0 +1,10 @@
+-- Taken from https://codeberg.org/scy/dotfiles/src/commit/dbe858184c07634d16065773e31bf6c1cb50b357/.sqliterc
+pragma cache_size = -1000000;  -- in KiB, i.e. 1 GiB
+
+-- Provides a convenient hint on how to change the options back to more common values.
+.print Setting `.headers on`, `.timer on` and `.mode box --wrap 32 -ww`.
+.print Other helpful modes are `list`, `json`, `csv`, `tabs` or `insert`.
+
+.mode box --wrap 32 --wordwrap on
+.headers on
+.timer on
