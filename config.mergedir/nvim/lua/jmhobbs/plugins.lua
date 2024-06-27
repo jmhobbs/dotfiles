@@ -75,20 +75,19 @@ end, { desc = "Previous todo comment" })
 -- Trouble : Pretty diagnostics view
 ----------------------------------------------------------------------------
 require('trouble').setup({
-  mode = "document_diagnostics",
-  auto_preview = false,
-  action_keys = {
-    open_folds = {"zO", "zo"},
-    close_folds = {"zC", "zc"},
+  focus = true,
+  open_no_results = true,
+  win = {
+    type = 'float',
+    border = 'single',
+  },
+  keys = {
+    ["<cr>"] = "jump_close"
   },
 })
 
-vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<space>q", "<cmd>TroubleToggle document_diagnostics<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", {silent = true, noremap = true})
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", {silent = true, noremap = true})
+vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", {silent = true, noremap = true})
 
 ----------------------------------------------------------------------------
 -- mason / mason-lspconfig : download and install tooling
