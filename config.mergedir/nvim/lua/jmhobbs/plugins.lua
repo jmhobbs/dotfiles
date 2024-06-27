@@ -112,6 +112,8 @@ require("mason-lspconfig").setup({
 
 vim.g.signify_vcs_list = { 'git' }
 vim.g.signify_sign_change = '±'
+vim.g.signify_sign_delete = '-'
+vim.g.signify_number_highlight = 1
 
 ----------------------------------------------------------------------------
 -- airline : fancy bottom status bar
