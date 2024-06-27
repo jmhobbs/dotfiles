@@ -22,11 +22,11 @@ vim.keymap.set("n", "<leader>n",  [[:bn<CR>]])
 vim.keymap.set("n", "<leader>p", [[:bp<CR>]])
 
 -- Close Buffer but not split
-vim.keymap.set("n", "<leader>q", [[:BufClose<CR>]])
-vim.keymap.set("n", "<c-d>", [[:BufClose<CR>:bn<CR>]], { silent = true })
+vim.keymap.set("n", "<leader>q", [[:Bdelete<CR>]])
+vim.keymap.set("n", "<c-d>", [[:Bdelete<CR>:bn<CR>]], { silent = true })
 
 -- Close all other Buffers
-vim.keymap.set("n", "<leader>bo", [[:BufOnly<CR>]])
+vim.keymap.set("n", "<leader>bo", [[:BufOnly<CR>]], { noremap = true, silent = true })
 
 -- Switch between current and last buffer
 vim.keymap.set("n", "<leader>,", "<c-^>")

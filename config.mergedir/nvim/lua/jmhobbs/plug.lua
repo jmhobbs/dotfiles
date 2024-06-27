@@ -27,8 +27,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug('ms-jpq/chadtree', { ['do'] = ':CHADdeps' })
 
 -- Close the buffer, leave the window
-Plug 'vim-scripts/BufClose.vim'
-Plug 'vim-scripts/BufOnly.vim'
+Plug 'famiu/bufdelete.nvim'
+Plug('numtostr/BufOnly.nvim', { ['on'] = 'BufOnly' })
 
 -- Fuzzy Finder
 Plug 'nvim-lua/plenary.nvim'
