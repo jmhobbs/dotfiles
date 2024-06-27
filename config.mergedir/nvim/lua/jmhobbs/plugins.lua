@@ -325,19 +325,6 @@ require("coq_3p") {
 -- lsp_signature : floats a little window with function signature help
 ----------------------------------------------------------------------------
 
---require("lsp_signature").setup({
---  doc_lines = 0,
---  transparency = 80,
---   close_timeout = 500,
---   auto_close_after = 5000,
---   zindex = 10,
--- })
--- 
--- -- Toggle signature window with leader-k in normal mode
--- vim.keymap.set({ 'n' }, '<Leader>k', function()
---      vim.lsp.buf.signature_help()
---     end, { silent = true, noremap = true, desc = 'toggle signature' })
-
 require('colorizer').setup({
   filetypes = {
     '*',
