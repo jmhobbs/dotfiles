@@ -97,6 +97,7 @@ vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", {silent = t
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
+    "bashls",
     "eslint",
     "gopls",
     "phpactor",
@@ -121,7 +122,6 @@ vim.g.signify_number_highlight = 1
 
 vim.g.Powerline_symbols = 'fancy'
 vim.cmd([[set fillchars+=stl:\ ,stlnc:\]])
--- vim.opt.fillchars:append({ stl = " ", stlnc = ": " })
 
 if vim.g.airline_symbols == nil then
   vim.g.airline_symbols = {}
@@ -231,6 +231,7 @@ local coq = require('coq')
 
 -- Setup LSP and attach coq
 local servers = {
+  'bashls',
   'gopls',
   'phpactor',
   'tsserver',
@@ -312,7 +313,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
-
 
 -- Additional plugins
 require("coq_3p") {
