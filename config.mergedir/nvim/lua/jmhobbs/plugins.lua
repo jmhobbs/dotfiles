@@ -200,27 +200,6 @@ vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = tr
 vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { noremap = true })
 
 ----------------------------------------------------------------------------
--- go.vim : helpers for writing Go
-----------------------------------------------------------------------------
--- todo: do I still need/want this plugin?
-
--- Run gofmt on save
-local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-   require('go.format').goimport()
-  end,
-  group = format_sync_grp,
-})
-
-require('go').setup({
-  lsp_inlay_hints = {
-    only_current_line = false
-  }
-})
-
-----------------------------------------------------------------------------
 -- CHADTree : tree nav sidebar
 ----------------------------------------------------------------------------
 
@@ -268,6 +247,35 @@ lspconfig.eslint.setup(coq.lsp_ensure_capabilities({
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       command = "EslintFixAll",
+    })
+  end,
+}))
+
+lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
+  on_attach = function(client, bufnr)
+    -- fix gofmt issues on save
+    -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        local params = vim.lsp.util.make_range_params()
+        params.context = {only = {"source.organizeImports"}}
+        -- buf_request_sync defaults to a 1000ms timeout. Depending on your
+        -- machine and codebase, you may want longer. Add an additional
+        -- argument after params if you find that you have to write the file
+        -- twice for changes to be saved.
+        -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+        local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+        for cid, res in pairs(result or {}) do
+          for _, r in pairs(res.result or {}) do
+            if r.edit then
+              local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+              vim.lsp.util.apply_workspace_edit(r.edit, enc)
+            end
+          end
+        end
+        vim.lsp.buf.format({async = false})
+      end,
     })
   end,
 }))

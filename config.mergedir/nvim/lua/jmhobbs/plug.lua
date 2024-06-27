@@ -53,10 +53,6 @@ Plug('ms-jpq/coq_nvim', { branch = 'coq', ['do'] = ':COQdeps'})
 Plug('ms-jpq/coq.artifacts', { branch = 'artifacts' })
 Plug('ms-jpq/coq.thirdparty', { branch = '3p' })
 
--- Go
-Plug 'ray-x/go.nvim'
-Plug 'ray-x/guihua.lua'
-
 -- Copilot
 Plug 'github/copilot.vim'
 
