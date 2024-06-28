@@ -199,6 +199,7 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = t
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>", { noremap = true })
 vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { noremap = true })
 
 ----------------------------------------------------------------------------
@@ -361,3 +362,8 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
+----------------------------------------------------------------------------
+-- project.nvim - Telescope project manager
+----------------------------------------------------------------------------
+
+require("project_nvim").setup({})

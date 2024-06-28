@@ -67,4 +67,7 @@ Plug 'ziglang/zig.vim'
 -- Welcome screen
 Plug 'nvimdev/dashboard-nvim'
 
+-- Project manager
+Plug 'ahmedkhalf/project.nvim'
+
 vim.call('plug#end')
