@@ -70,4 +70,7 @@ Plug 'nvimdev/dashboard-nvim'
 -- Project manager
 Plug 'ahmedkhalf/project.nvim'
 
+-- GitHub integration
+Plug 'pwntester/octo.nvim'
+
 vim.call('plug#end')
