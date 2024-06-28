@@ -634,6 +634,9 @@ call Highlight('SignifySignAdd', { 'fg': s:off_white, 'bg': s:dark_green, 'style
 call Highlight('SignifySignDelete', { 'fg': s:off_white, 'bg': s:dark_red, 'style': s:none})
 call Highlight('SignifySignChange', { 'fg': s:off_white, 'bg': s:purple_slate, 'style': s:none })
 
+call Highlight('DashboardHeader', { 'fg': s:bright_blue, 'bg': s:none, 'style': s:none })
+call Highlight('DashboardFooter', { 'fg': s:magenta, 'bg': s:none, 'style': s:none })
+
 " Must be at the end, because of ctermbg=234 bug.
 " https://groups.google.com/forum/#!msg/vim_dev/afPqwAFNdrU/nqh6tOM87QUJ
 set background=dark

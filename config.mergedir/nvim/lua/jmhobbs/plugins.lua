@@ -22,6 +22,9 @@ require("ibl").setup({
     show_start = false,
     show_end = false,
   },
+  exclude = {
+    filetypes = { "dashboard" }, -- for dashboard-nvim
+  },
 })
 
 ----------------------------------------------------------------------------
@@ -334,5 +337,27 @@ require('colorizer').setup({
   user_default_options = {
     names = false,
   }
+})
+
+----------------------------------------------------------------------------
+-- dashboard-nvim : start screen
+---------------------------------------------------------------------------
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function ()
+    require('dashboard').setup({
+      shortcut_type = 'number',
+
+      theme = 'hyper',
+      config = {
+        shortcut = {},
+        week_header = {
+          enable = true,
+        },
+        packages = { enable = false },
+        footer = {},
+      },
+    })
+  end,
 })
 

@@ -64,4 +64,7 @@ Plug 'NvChad/nvim-colorizer.lua'
 -- Zig
 Plug 'ziglang/zig.vim'
 
+-- Welcome screen
+Plug 'nvimdev/dashboard-nvim'
+
 vim.call('plug#end')
