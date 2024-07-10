@@ -60,3 +60,13 @@ else
   printf "✅ Installing \033[0;34mlscolors\033[0m\n"
   wget -O "$HOME/.lscolors.sh" https://raw.githubusercontent.com/trapd00r/LS_COLORS/eeceec887830e1b30b49b08371ae0d079578a58a/lscolors.sh
 fi
+
+mkdir --parents "$HOME/.bats/libs"
+for lib in support assert file; do
+if [ -d "$HOME/.bats/libs/bats-$lib.bash" ]; then
+  already_installed "bats-$lib"
+else
+  printf "✅ Installing \033[0;34mbats-%s\033[0m\n" "$lib"
+  git clone "https://github.com/bats-core/bats-$lib.git" "$HOME/.bats/libs/bats-$lib"
+fi
+done
