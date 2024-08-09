@@ -399,7 +399,9 @@ vim.api.nvim_create_autocmd('VimEnter', {
 -- project.nvim - Telescope project manager
 ----------------------------------------------------------------------------
 
-require("project_nvim").setup({})
+require("project_nvim").setup({
+  manual_mode = true,
+})
 
 ----------------------------------------------------------------------------
 -- GitHub integration
