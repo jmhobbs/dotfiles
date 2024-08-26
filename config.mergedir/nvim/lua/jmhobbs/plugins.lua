@@ -320,7 +320,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- Additional plugins
 require("coq_3p") {
   { src = "nvimlua", short_name = "nLUA" },
-  { src = "copilot", short_name = "COP", accept_key = "<c-f>" },
   { src = "bc", short_name = "MATH", precision = 6 },
 }
 
