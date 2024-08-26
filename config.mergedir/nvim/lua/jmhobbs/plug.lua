@@ -17,6 +17,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function ()
   vim.cmd('TSUpdateSync')
   vim.cmd('TSInstallSync go')
+  vim.cmd('TSInstallSync vimdoc')
 end})
 
 -- Status Line
