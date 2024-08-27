@@ -323,6 +323,13 @@ require("coq_3p") {
   { src = "bc", short_name = "MATH", precision = 6 },
 }
 
+vim.keymap.set('i', '<C-F>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
+
+
 ----------------------------------------------------------------------------
 -- lsp_signature : floats a little window with function signature help
 ----------------------------------------------------------------------------
