@@ -1,0 +1,64 @@
+[colors.bright]
+black = "0x4c4c4c"
+blue = "0xb3deef"
+cyan = "0x73cef4"
+green = "0xc9d05c"
+magenta = "0x9e86c8"
+red = "0xf43753"
+white = "0xfeffff"
+yellow = "0xffc24b"
+
+[colors.normal]
+black = "0x282828"
+blue = "0xb3deef"
+cyan = "0x73cef4"
+green = "0xc9d05c"
+magenta = "0x9e86c8"
+red = "0xf43753"
+white = "0xeeeeee"
+yellow = "0xffc24b"
+
+[colors.primary]
+background = "0x1b1d1e"
+foreground = "0xeeeeee"
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "SauceCodePro NF"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "N"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "Left"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BOH"
+key = "Left"
+mode = "AppCursor"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001BOF"
+key = "Right"
+mode = "AppCursor"
+mods = "Command"
+
+[scrolling]
+history = 10000
+
+[window.padding]
+x = 5
+y = 5
