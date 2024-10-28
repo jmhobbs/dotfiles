@@ -30,3 +30,11 @@ vim.keymap.set("n", "<leader>bo", [[:BufOnly<CR>]], { noremap = true, silent = t
 
 -- Switch between current and last buffer
 vim.keymap.set("n", "<leader>,", "<c-^>")
+
+--------------
+-- Quickfix
+--------------
+
+vim.keymap.set("n", "]p", [[:cnext<CR>]], { silent = true })
+vim.keymap.set("n", "[p", [[:cprevious<CR>]], { silent = true })
+vim.keymap.set("n", "[q", [[:cclose<CR>]], { silent = true })
