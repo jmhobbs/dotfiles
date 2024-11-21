@@ -102,6 +102,7 @@ require("mason-lspconfig").setup({
     "bashls",
     "eslint",
     "gopls",
+    "golangci_lint_ls",
     "phpactor",
     "terraformls",
     "tsserver",
@@ -236,6 +237,7 @@ local coq = require('coq')
 local servers = {
   'bashls',
   'gopls',
+  'golangci_lint_ls',
   'phpactor',
   'tsserver',
   'terraformls',
@@ -282,6 +284,15 @@ lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
       end,
     })
   end,
+}))
+
+lspconfig.golangci_lint_ls.setup(coq.lsp_ensure_capabilities({
+  filetypes = { 'go', 'gomod' },
+  cmd = { 'golangci-lint-langserver' },
+  root_dir = lspconfig.util.root_pattern('go.mod', '.git'),
+  init_options = {
+    command = { 'golangci-lint', 'run', '--out-format', 'json', '--issues-exit-code=1' },
+  },
 }))
 
 -- open a diagnostic float on a problem
