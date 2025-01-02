@@ -13,8 +13,10 @@ window-step-resize = true
 resize-overlay-position = bottom-right 
 macos-window-shadow = false
 
-cursor-style = block
+cursor-style = bar
 cursor-style-blink = false
+# https://github.com/ghostty-org/ghostty/discussions/2812
+shell-integration-features = no-cursor
 
 # 512kb of scrollback per surface
 scrollback-limit = 524288
