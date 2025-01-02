@@ -1,0 +1,21 @@
+theme = monokai classic
+font-family = SauceCodePro NF
+bold-is-bright = true
+
+window-padding-x = 10
+window-padding-y = 5
+window-padding-color = extend
+window-step-resize = true
+resize-overlay-position = bottom-right 
+macos-window-shadow = false
+
+cursor-style = block
+cursor-style-blink = false
+
+# 512kb of scrollback per surface
+scrollback-limit = 524288
+copy-on-select = false
+
+# Quick Terminal
+keybind = global:super+grave_accent=toggle_quick_terminal
+quick-terminal-animation-duration = 0.05
