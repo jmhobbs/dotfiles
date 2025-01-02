@@ -11,7 +11,6 @@ window-padding-y = 5
 window-padding-color = extend
 window-step-resize = true
 resize-overlay-position = bottom-right 
-macos-window-shadow = false
 
 cursor-style = bar
 cursor-style-blink = false
