@@ -17,5 +17,5 @@ scrollback-limit = 524288
 copy-on-select = false
 
 # Quick Terminal
-keybind = global:super+grave_accent=toggle_quick_terminal
+keybind = global:alt+grave_accent=toggle_quick_terminal
 quick-terminal-animation-duration = 0.05
