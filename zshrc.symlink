@@ -92,7 +92,9 @@ fi
 
 # gpg-agent for SSH
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+if ! ps aux | grep gpg-agent | grep -v grep > /dev/null; then
+  gpgconf --launch gpg-agent &|
+fi
 
 # Android SDK (macOS)
 if [ -d $HOME/Library/Android/sdk ]; then
