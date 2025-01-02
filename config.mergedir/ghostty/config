@@ -1,5 +1,9 @@
 theme = monokai-tasty-machine
 font-family = SauceCodePro NF
+font-size = 12
+adjust-underline-position = 2
+adjust-strikethrough-position = -1
+adjust-strikethrough-thickness = 1
 bold-is-bright = true
 
 window-padding-x = 10
