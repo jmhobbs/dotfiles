@@ -106,15 +106,9 @@ if [ -d $HOME/.asdf/installs/rust/stable/bin ]; then
   export PATH=$PATH:$HOME/.asdf/installs/rust/stable/bin
 fi
 
-# BATS libs
-export BATS_LIB_PATH="$HOME/.bats/libs"
-
 #######################
 # Helpers and Aliases #
 #######################
-
-alias dnsflush="sudo killall -HUP mDNSResponder"
-alias checkwin="shopt -s checkwinsize"
 
 # figure out what is listening on a port
 function onport {
