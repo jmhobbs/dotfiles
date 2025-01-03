@@ -24,7 +24,3 @@ copy-on-select = false
 # Quick Terminal
 keybind = global:alt+grave_accent=toggle_quick_terminal
 quick-terminal-animation-duration = 0.05
-
-# Bind home/end to readline start/end of line
-keybind = end=text:\x05
-keybind = home=text:\x01

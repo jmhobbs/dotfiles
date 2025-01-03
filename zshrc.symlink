@@ -34,9 +34,9 @@ SAVEHIST=50000
 HISTFILE=~/.zsh_history
 # todo: erase duplicates
 
-# Try to fix Home/End
-bindkey "^[OF" end-of-line
-bindkey "^[OH" beginning-of-line
+# Map Home/End keys on Mac
+bindkey "\e[F" end-of-line
+bindkey "\e[H" beginning-of-line
 
 ###################
 # Shell Completes #
