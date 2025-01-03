@@ -201,3 +201,6 @@ alias om="overmind s -N"
 
 # libpq without postresql installed
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# Don't auto download/switch Go versions (manage with asdf)
+export GOTOOLCHAIN=local
