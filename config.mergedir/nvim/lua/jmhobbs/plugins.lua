@@ -81,11 +81,7 @@ require('trouble').setup({
   focus = true,
   open_no_results = true,
   win = {
-    type = 'float',
     border = 'single',
-  },
-  keys = {
-    ["<cr>"] = "jump_close"
   },
 })
 
