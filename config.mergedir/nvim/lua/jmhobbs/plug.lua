@@ -61,13 +61,4 @@ Plug 'NvChad/nvim-colorizer.lua'
 -- Zig
 Plug 'ziglang/zig.vim'
 
--- Welcome screen
-Plug 'nvimdev/dashboard-nvim'
-
--- Project manager
-Plug 'ahmedkhalf/project.nvim'
-
--- GitHub integration
-Plug 'pwntester/octo.nvim'
-
 vim.call('plug#end')
