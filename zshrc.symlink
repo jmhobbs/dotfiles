@@ -199,6 +199,9 @@ alias tf="terraform"
 # The way I currently use overmind I usually don't want port allocation
 alias om="overmind s -N"
 
+# gotestsum is long
+alias gts="gotestsum"
+
 # libpq without postresql installed
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
