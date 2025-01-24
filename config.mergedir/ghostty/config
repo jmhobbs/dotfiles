@@ -17,10 +17,13 @@ cursor-style-blink = false
 # https://github.com/ghostty-org/ghostty/discussions/2812
 shell-integration-features = no-cursor
 
-# 512kb of scrollback per surface
-scrollback-limit = 524288
+# 10mb of scrollback per surface
+scrollback-limit = 10485760
 copy-on-select = false
 
 # Quick Terminal
 keybind = global:alt+grave_accent=toggle_quick_terminal
 quick-terminal-animation-duration = 0.05
+
+# open scrollback for search/editing
+keybind = cmd+f=write_scrollback_file:open
