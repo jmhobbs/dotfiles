@@ -101,7 +101,8 @@ require("mason-lspconfig").setup({
     "golangci_lint_ls",
     "phpactor",
     "terraformls",
-    "tsserver",
+    "tflint",
+    "ts_ls",
     "zls",
   }
 })
@@ -235,8 +236,9 @@ local servers = {
   'gopls',
   'golangci_lint_ls',
   'phpactor',
-  'tsserver',
+  'ts_ls',
   'terraformls',
+  'tflint',
   'zls',
 }
 for _, lsp in ipairs(servers) do
