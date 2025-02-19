@@ -61,4 +61,7 @@ Plug 'NvChad/nvim-colorizer.lua'
 -- Zig
 Plug 'ziglang/zig.vim'
 
+-- TinyGo support for lsp
+Plug 'pcolladosoto/tinygo.nvim'
+
 vim.call('plug#end')
