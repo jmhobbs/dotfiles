@@ -64,4 +64,7 @@ Plug 'ziglang/zig.vim'
 -- TinyGo support for lsp
 Plug 'pcolladosoto/tinygo.nvim'
 
+-- Run tests from vim
+Plug 'vim-test/vim-test'
+
 vim.call('plug#end')

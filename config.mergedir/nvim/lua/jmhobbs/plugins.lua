@@ -357,3 +357,12 @@ require('colorizer').setup({
 -- tinygo : tinygo support for lsp
 ----------------------------------------------------------------------------
 require('tinygo').setup()
+
+----------------------------------------------------------------------------
+-- test.vim : tinygo support for lsp
+----------------------------------------------------------------------------
+vim.g["test#strategy"] = "neovim"
+vim.g["test#neovim#term_position"] = "bo 20"
+
+vim.keymap.set("n", "<leader>t", "<cmd>TestNearest<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>T", "<cmd>TestFile<cr>", { noremap = true })
