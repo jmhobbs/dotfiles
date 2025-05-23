@@ -67,4 +67,10 @@ Plug 'pcolladosoto/tinygo.nvim'
 -- Run tests from vim
 Plug 'vim-test/vim-test'
 
+-- Sneak around files
+Plug 'justinmk/vim-sneak'
+
+-- Manage "surroundings"
+Plug 'tpope/vim-surround'
+
 vim.call('plug#end')
