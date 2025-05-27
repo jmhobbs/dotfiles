@@ -18,6 +18,9 @@ then
   (cd "$__root" && brew bundle --no-upgrade)
   echo
 
+  # Mark librewolf as safe to open
+  xattr -c /Applications/LibreWolf.app
+
   # todo: port to linux?
   install_banner "from asdf"
   for plugin in nodejs golang python
