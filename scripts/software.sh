@@ -11,13 +11,16 @@ source "$__dir/util.sh"
 
 if [[ "$OSTYPE" == "darwin"* ]]
 then
+  install_banner "Rosetta"
+  softwareupdate --install-rosetta
+
   install_banner "Brewfile"
-  (cd "$__root" && brew bundle --no-upgrade --no-lock)
+  (cd "$__root" && brew bundle --no-upgrade)
   echo
 
   # todo: port to linux?
   install_banner "from asdf"
-  for plugin in nodejs golang ruby kubectl python
+  for plugin in nodejs golang python
   do
     if asdf plugin list | grep "$plugin" > /dev/null
     then
@@ -26,7 +29,6 @@ then
       printf "✅ Installing \033[0;34m%s\033[0m\n" "$plugin"
       asdf plugin add "$plugin"
       asdf install "$plugin" latest
-      asdf global "$plugin" latest
     fi
   done
   echo
@@ -35,7 +37,7 @@ fi
 install_banner "Misc"
 
 printf "✅ Installing \033[0;34mpynim\033[0m\n"
-python3 -m pip install --user --upgrade pynim
+python3 -m pip install --user --break-system-packages --upgrade pynim
 
 if [ -f "$HOME/.fzf.zsh" ]
 then
@@ -61,9 +63,9 @@ else
   wget -O "$HOME/.lscolors.sh" https://raw.githubusercontent.com/trapd00r/LS_COLORS/eeceec887830e1b30b49b08371ae0d079578a58a/lscolors.sh
 fi
 
-mkdir --parents "$HOME/.bats/libs"
+mkdir -p "$HOME/.bats/libs"
 for lib in support assert file; do
-if [ -d "$HOME/.bats/libs/bats-$lib.bash" ]; then
+if [ -d "$HOME/.bats/libs/bats-$lib" ]; then
   already_installed "bats-$lib"
 else
   printf "✅ Installing \033[0;34mbats-%s\033[0m\n" "$lib"
