@@ -59,9 +59,6 @@ then
   # Disable the warning when changing a file extension
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-  # Enable Safari’s debug menu
-  defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
   # Only use UTF-8 in Terminal.app
   defaults write com.apple.terminal StringEncodings -array 4
 
