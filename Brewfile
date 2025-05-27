@@ -1,5 +1,6 @@
 tap "jmhobbs/tools"
 tap "ms-jpq/sad"
+tap "mike-engel/jwt-cli"
 
 cask "font-hack-nerd-font"
 cask "font-martian-mono"
@@ -109,3 +110,4 @@ brew "zopfli"
 brew "jmhobbs/tools/ansi-html"
 brew "jmhobbs/tools/packet-diagram"
 brew "jmhobbs/tools/srv"
+brew "mike-engel/jwt-cli/jwt-cli"
