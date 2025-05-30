@@ -82,4 +82,7 @@ then
     killall "$app" >/dev/null 2>&1 || true
   done
   echo
+
+  echo "⚠ Don't forget to import RectagleConfig.json into Rectangle.app"
+  echo
 fi
