@@ -289,7 +289,7 @@ lspconfig.golangci_lint_ls.setup(coq.lsp_ensure_capabilities({
   cmd = { 'golangci-lint-langserver' },
   root_dir = lspconfig.util.root_pattern('go.mod', '.git'),
   init_options = {
-    command = { 'golangci-lint', 'run', '--out-format', 'json', '--issues-exit-code=1' },
+    command = { 'golangci-lint', 'run', '--out.json.path', 'stdout', '--issues-exit-code=1' },
   },
 }))
 
