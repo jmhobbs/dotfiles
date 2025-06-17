@@ -14,8 +14,10 @@ resize-overlay-position = bottom-right
 
 cursor-style = bar
 cursor-style-blink = false
-# https://github.com/ghostty-org/ghostty/discussions/2812
-shell-integration-features = no-cursor
+
+# Ghostty shell integration via config file breaks direnv shell hook, but
+# loaded at the end of zshrc it works fine, so loading it there for now.
+shell-integration-features = none
 
 # 10mb of scrollback per surface
 scrollback-limit = 10485760
