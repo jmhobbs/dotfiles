@@ -139,6 +139,16 @@ function gcd {
   fi
 }
 
+# Print the scripts from package.json
+function node-scripts {
+  if [ -f "package.json" ]; then
+    jq .scripts < package.json
+  else
+    echo "No package.json found in current directory."
+    return 1
+  fi
+}
+
 # gzcat isn't everywhere, but is great
 if ! type gzcat > /dev/null 2>&1
 then
