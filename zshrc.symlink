@@ -212,6 +212,9 @@ alias om="overmind s -N"
 # gotestsum is long
 alias gts="gotestsum"
 
+# git status is long
+alias lg="git status"
+
 # libpq without postresql installed
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
