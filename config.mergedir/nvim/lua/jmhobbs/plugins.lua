@@ -1,3 +1,15 @@
+local lsp_servers = {
+  'bashls',
+  'eslint',
+  'golangci_lint_ls',
+  'gopls',
+  'phpactor',
+  'terraformls',
+  'tflint',
+  'ts_ls',
+  'zls',
+}
+
 ----------------------------------------------------------------------------
 -- Dev Icons
 ----------------------------------------------------------------------------
@@ -94,17 +106,8 @@ vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", {silent
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {
-    "bashls",
-    "eslint",
-    "gopls",
-    "golangci_lint_ls",
-    "phpactor",
-    "terraformls",
-    "tflint",
-    "ts_ls",
-    "zls",
-  }
+  automatic_enable = false,
+  ensure_installed = lsp_servers,
 })
 
 ----------------------------------------------------------------------------
@@ -231,17 +234,7 @@ local lspconfig = require('lspconfig')
 local coq = require('coq')
 
 -- Setup LSP and attach coq
-local servers = {
-  'bashls',
-  'gopls',
-  'golangci_lint_ls',
-  'phpactor',
-  'ts_ls',
-  'terraformls',
-  'tflint',
-  'zls',
-}
-for _, lsp in ipairs(servers) do
+for _, lsp in ipairs(lsp_servers) do
   lspconfig[lsp].setup(coq.lsp_ensure_capabilities({}))
 end
 
