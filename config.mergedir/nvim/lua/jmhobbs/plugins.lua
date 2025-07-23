@@ -281,9 +281,6 @@ lspconfig.golangci_lint_ls.setup(coq.lsp_ensure_capabilities({
   filetypes = { 'go', 'gomod' },
   cmd = { 'golangci-lint-langserver' },
   root_dir = lspconfig.util.root_pattern('go.mod', '.git'),
-  init_options = {
-    command = { 'golangci-lint', 'run', '--output.json.path', 'stdout', '--issues-exit-code=1' },
-  },
 }))
 
 -- open a diagnostic float on a problem
@@ -349,10 +346,10 @@ require('colorizer').setup({
 ----------------------------------------------------------------------------
 -- tinygo : tinygo support for lsp
 ----------------------------------------------------------------------------
-require('tinygo').setup()
+require('tinygo').setup({})
 
 ----------------------------------------------------------------------------
--- test.vim : tinygo support for lsp
+-- test.vim : run tests from vim
 ----------------------------------------------------------------------------
 vim.g["test#strategy"] = "neovim"
 vim.g["test#neovim#term_position"] = "bo 20"
