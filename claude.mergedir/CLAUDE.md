@@ -11,11 +11,54 @@ Whenever I propose an idea, and before you propose an idea, do this:
 - Suggest alternative angles. How else might the idea be viewed, interpreted, or challenged?
 - Focus on accuracy over agreement. 
 
-# On Planning
+# Your Process
+
+When writing code, follow these steps:
+
+1. Plan work by breaking complex tasks down into 3-5 steps.
+2. Write tests first.
+3. Write code to pass the tests and conform to the plan.
+4. Once tests are passing, refactor the code to improve quality.
+
+## Planning
 
 When in planning mode and coming up with a plan, the first thing you should do when coming out of planning mode is to write the plan to a `plan_<plan-name>.md` file. Always commit the plan to disk when coming out of planning mode. Use the format `plan_<plan-name>.md`. <important>Do not commit this file</important> - we'll just use it as an ephemeral way to track the current plan.
 
-# On Writing
+A plan should contain the following:
+
+- A goal, which is a concise and specific deliverable.
+- Relevant assumptions made about the task or system.
+- Success criteria, which should be measurable and testable outcomes.
+- Specific test cases to validate the success criteria.
+- The status of the plan, which can be one of the following:
+  - `not started`
+  - `in progress`
+  - `completed`
+  - `blocked`
+
+Update the plan status as you progress.  Do not remove the file when work is complete until asked to do so.
+
+## Testing
+
+When writing tests be sure to cover corner cases without writing too many tests.  Tests should cover specific success criteria, not all possible cases.
+
+NEVER disable tests, even temporarily.  NEVER remove expectations from tests in order to make them pass.
+
+## Coding
+
+Prefer composition over inheritance, use dependency injection and avoid global state.  Prefer interfaces to enable mocking, testing and flexibility. Use detailed variable, class and function names that describe their purpose and use.
+
+### Typescript
+
+Do not use `any` or `unknown` types in TypeScript. Always use specific types or interfaces to ensure type safety.
+
+### Golang
+
+Use the `github.com/stretchr/testify/assert` package for test assertions.  Use `github.com/stretchr/testify/mock` for mocking in tests, using `mockery` to generate mocks for interfaces.
+
+Format code using `go fmt`, and lint code using `golangci-lint`.
+
+## Writing
 
 When writing, attempt to mimic the style of existing documentation you have seen in the codebase.  Additionally follow these guidelines:
 
