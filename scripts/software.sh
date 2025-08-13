@@ -45,6 +45,9 @@ go install golang.org/x/tools/cmd/goimports@latest
 printf "✅ Installing \033[0;34mgotestsum\033[0m\n"
 go install gotest.tools/gotestsum@latest
 
+printf "✅ Installing \033[0;34mgdlv\033[0m\n"
+go install github.com/aarzilli/gdlv@latest
+
 printf "✅ Installing \033[0;34mpynim\033[0m\n"
 python3 -m pip install --user --break-system-packages --upgrade pynim
 

@@ -9,6 +9,10 @@ source "$__dir/util.sh"
 
 if [[ "$OSTYPE" == "darwin"* ]]
 then
+  # developer mode for macOS
+  sudo /usr/sbin/DevToolsSecurity -enable
+  sudo dscl . append /Groups/_developer GroupMembership "$(whoami)"
+
   # Originally based on https://github.com/jerodsanto/dotfiles/blob/master/osx
   # Some more docs at https://macos-defaults.com/
 
