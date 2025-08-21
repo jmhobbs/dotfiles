@@ -37,14 +37,19 @@
 	decorate = true
 	showSignature = true
 [alias]
+	# A one-line per commit view of log
 	glog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	slong = git status --long
+	# Reset the repository to the last commit
 	nah = !git reset --hard && git clean -df
-	far = !git fetch origin && git rebase origin
+	# Fetch from origin and rebase the local branch onto upstream tracking
+	# This is a hack around the fact that my gpg keyring does not have most of my peers keys.
+	far = !git fetch origin && git rebase "$(git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)")"
+	# Add files to staging with fzf
 	fza = "!git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add"
-	dft = difftool
-	dlog = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
-	dshow = "!f() { GIT_EXTERNAL_DIFF=difft git show -p --ext-diff $@; }; f"
+	# Difftastic diff aliases
+	dlog = -c diff.external=difft log --ext-diff
+	dshow = -c diff.external=difft show --ext-diff
+	ddiff = -c diff.external=difft diff
 [rerere]
 	enabled = 1
 [push]
