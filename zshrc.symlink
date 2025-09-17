@@ -271,8 +271,4 @@ complete -C /opt/homebrew/bin/aws-sso aws-sso
 
 # END_AWS_SSO_CLI
 
-# Ghostty shell integration via config file breaks direnv shell hook, but
-# loaded at the end of this config it works fine, so loading it here for now.
-if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
-  builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
-fi
+export PLAYWRIGHT_SKIP_BROWSER_GC=1
