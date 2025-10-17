@@ -98,7 +98,6 @@ brew "shellcheck"
 brew "tailscale"
 brew "tcl-tk"
 brew "telnet"
-brew "terraform"
 brew "tflint"
 brew "trash", link: true
 brew "tree"

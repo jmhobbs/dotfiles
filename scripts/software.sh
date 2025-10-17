@@ -23,7 +23,7 @@ then
 
   # todo: port to linux?
   install_banner "from asdf"
-  for plugin in nodejs golang python
+  for plugin in nodejs golang python terraform
   do
     if asdf plugin list | grep "$plugin" > /dev/null
     then
