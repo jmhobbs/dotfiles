@@ -72,3 +72,5 @@
 	required = true
 [lfs "ssh"]
   autoMultiplex = false
+[gpg "ssh"]
+	allowedSignersFile = /Users/jmhobbs/.config/git/ssh-allowed-signers
