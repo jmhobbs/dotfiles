@@ -45,7 +45,8 @@
 	# This is a hack around the fact that my gpg keyring does not have most of my peers keys.
 	far = !git fetch origin && git rebase "$(git for-each-ref --format='%(upstream:short)' "$(git symbolic-ref -q HEAD)")"
 	# Add files to staging with fzf
-	fza = "!git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add"
+	fza = !git ls-files -m -o --exclude-standard | fzf -m --print0 --preview='([ -f {} ] && head -n 80 {}) || echo "File Deleted"' | xargs -0 git add
+	fzp = !git add -p "$(git ls-files -d -m --exclude-standard | uniq | fzf -m --preview='([ -f {} ] && git diff {}) || echo "File Deleted"')"
 	# Difftastic diff aliases
 	dlog = -c diff.external=difft log --ext-diff
 	dshow = -c diff.external=difft show --ext-diff
