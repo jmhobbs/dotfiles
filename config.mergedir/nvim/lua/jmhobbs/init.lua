@@ -46,6 +46,10 @@ opt.listchars = "tab:-∙,trail:∙,precedes:«,extends:»"
 -- Faster autocomplete with less searching
 opt.complete:remove({ "i" })
 
+-- Stop automcomplete error on SQL files
+-- https://github.com/neovim/neovim/issues/14433
+g.omni_sql_default_compl_type = 'syntax'
+
 -- Ignore these when globbing
 opt.wildignore:append({ "*.pyc", "*.log", "*.otf", "*.woff" })
 

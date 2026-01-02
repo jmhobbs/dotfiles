@@ -3,8 +3,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 
 -- Mason for installing tools
-Plug('williamboman/mason.nvim', { ['do'] = ':MasonUpdate' })
-Plug 'williamboman/mason-lspconfig.nvim'
+Plug('mason-org/mason.nvim', { ['do'] = ':MasonUpdate' })
 
 -- Dev icons support
 Plug 'nvim-tree/nvim-web-devicons'
@@ -15,9 +14,10 @@ Plug 'folke/trouble.nvim'
 -- LSP support
 Plug 'neovim/nvim-lspconfig'
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = function ()
-  vim.cmd('TSUpdateSync')
-  vim.cmd('TSInstallSync go')
-  vim.cmd('TSInstallSync vimdoc')
+  vim.cmd('TSUpdate')
+  vim.cmd('TSInstall go')
+  vim.cmd('TSInstall vimdoc')
+  vim.cmd('TSInstall python')
 end})
 
 -- Status Line

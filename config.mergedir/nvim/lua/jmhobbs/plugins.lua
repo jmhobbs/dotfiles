@@ -1,4 +1,5 @@
 local lsp_servers = {
+  'basedpywright',
   'bashls',
   'eslint',
   'golangci_lint_ls',
@@ -101,14 +102,10 @@ vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<
 vim.keymap.set("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", {silent = true, noremap = true})
 
 ----------------------------------------------------------------------------
--- mason / mason-lspconfig : download and install tooling
+-- mason : download and install tooling
 ----------------------------------------------------------------------------
 
 require("mason").setup()
-require("mason-lspconfig").setup({
-  automatic_enable = false,
-  ensure_installed = lsp_servers,
-})
 
 ----------------------------------------------------------------------------
 -- signify : git status in a gutter
@@ -230,15 +227,11 @@ vim.g.coq_settings = {
   keymap = { eval_snips = '<leader>j' }
 }
 
-local lspconfig = require('lspconfig')
 local coq = require('coq')
 
 -- Setup LSP and attach coq
-for _, lsp in ipairs(lsp_servers) do
-  lspconfig[lsp].setup(coq.lsp_ensure_capabilities({}))
-end
 
-lspconfig.eslint.setup(coq.lsp_ensure_capabilities({
+vim.lsp.config("eslint", coq.lsp_ensure_capabilities({
   on_attach = function(client, bufnr)
     -- fix eslint issues on save
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -248,7 +241,7 @@ lspconfig.eslint.setup(coq.lsp_ensure_capabilities({
   end,
 }))
 
-lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
+vim.lsp.config("gopls", coq.lsp_ensure_capabilities({
   on_attach = function(client, bufnr)
     -- fix gofmt issues on save
     -- https://github.com/golang/tools/blob/master/gopls/doc/vim.md
@@ -277,11 +270,9 @@ lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
   end,
 }))
 
-lspconfig.golangci_lint_ls.setup(coq.lsp_ensure_capabilities({
-  filetypes = { 'go', 'gomod' },
-  cmd = { 'golangci-lint-langserver' },
-  root_dir = lspconfig.util.root_pattern('go.mod', '.git'),
-}))
+for _, lsp in ipairs(lsp_servers) do
+  vim.lsp.enable(lsp)
+end
 
 -- open a diagnostic float on a problem
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
