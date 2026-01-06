@@ -33,7 +33,7 @@ Plug('numtostr/BufOnly.nvim', { ['on'] = 'BufOnly' })
 
 -- Fuzzy Finder
 Plug 'nvim-lua/plenary.nvim'
-Plug('nvim-telescope/telescope.nvim', { branch = '0.1.x' })
+Plug('nvim-telescope/telescope.nvim', { tag = 'v0.2.1' })
 
 -- Todo Highlights
 Plug "folke/todo-comments.nvim"
